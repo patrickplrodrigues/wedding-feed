@@ -27,7 +27,9 @@ export async function onRequestPost(context) {
   }
 
   // ── Access key validation ───────────────────────────────────────────────
-  const eventKey = formData.get('event');
+  const url = new URL(request.url);
+
+  const eventKey = formData.get('event') || url.searchParams.get('event');
   if (!isKeyValid(eventKey, env)) {
     return jsonResponse({ error: 'Invalid or missing event key' }, 403, corsHeaders);
   }
