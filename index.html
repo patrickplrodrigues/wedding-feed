@@ -493,7 +493,7 @@ async function loadFeed(initial = false) {
   }
 
   try {
-    const res = await fetch('/functions/list');
+    const res = await fetch(`/api/list?event=${eventKey}`);
     if (!res.ok) throw new Error('list failed');
     const items = await res.json(); // [{ key, url, contentType, uploaded }]
 
@@ -670,7 +670,7 @@ async function startUpload() {
     fd.append('event', eventKey);
 
     try {
-      const res = await fetch('/functions/upload', { method: 'POST', body: fd });
+      const res = await fetch(`/api/upload?event=${eventKey}`, { method: 'POST', body: fd });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         if (res.status === 403) {
