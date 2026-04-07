@@ -552,12 +552,25 @@
       <div class="drawer-sub">Photos & videos · no account needed</div>
 
       <div id="drop-zone" onclick="document.getElementById('file-input').click()">
+
         <input id="file-input" type="file" accept="image/*,video/*" multiple style="display:none" onchange="handleFiles(this.files)" />
         <div class="dz-icon">📎</div>
         <div class="dz-label">Tap to choose photos or videos</div>
         <div class="dz-hint">or drag & drop · max 50 MB each</div>
       </div>
-
+        <textarea id="caption-input"
+  placeholder="Write a small message… (optional)"
+  style="
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px;
+    font-family:'Jost',sans-serif;
+    font-size:13px;
+    margin-bottom:12px;
+    resize:none;
+  "
+></textarea>
       <div id="file-list"></div>
 
       <div id="upload-progress">
@@ -684,7 +697,12 @@ async function loadFeed(initial = false) {
     }
   }
 }
-
+function escapeHtml(str) {
+  return (str || '')
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 // ═══════════════════════════════════════
 // BUILD CARDS
 // ═══════════════════════════════════════
@@ -707,7 +725,19 @@ function buildCards(item) {
     <div class="post-media" onclick="openLightbox('${escAttr(item.url)}', ${isVideo})">
       ${mediaHtml}
     </div>
-    <div class="post-footer">
+
+${item.caption ? `
+  <div style="
+    padding:10px 14px 0;
+    font-size:13px;
+    color:var(--charcoal-mid);
+    line-height:1.5;
+  ">
+    ${escapeHtml(item.caption)}
+  </div>
+` : ''}
+
+<div class="post-footer">
       <span class="post-time-label">${timeAgo}</span>
       <button class="post-expand-btn" onclick="openLightbox('${escAttr(item.url)}', ${isVideo})">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
@@ -732,11 +762,12 @@ function buildCards(item) {
     gridCard.innerHTML = `<img src="${escAttr(item.url)}" loading="lazy" alt="Wedding photo" decoding="async" />`;
   }
 
-  gridCard.addEventListener('click', () => openLightbox(item.url, isVideo));
+  gridCard.addEventListener('click', () => openLightbox(escAttr(item.url), isVideo));
 
   return { feedCard, gridCard };
 }
 
+  
 // ═══════════════════════════════════════
 // HELPERS
 // ═══════════════════════════════════════
@@ -826,6 +857,8 @@ async function startUpload() {
     const fd = new FormData();
     fd.append('file', file);
     fd.append('event', eventKey);
+    const caption = document.getElementById('caption-input').value.trim().slice(0, 200);
+    fd.append('caption', caption);
     try {
       const res = await fetch(`/upload?event=${encodeURIComponent(eventKey)}`, { method: 'POST', body: fd });
       if (!res.ok) {
@@ -856,6 +889,7 @@ function resetUpload() {
   renderFileList();
   document.getElementById('upload-progress').style.display = 'none';
   document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('caption-input').value = "";
   const btn = document.getElementById('btn-upload');
   btn.disabled = false;
   btn.textContent = 'Upload Photos';
