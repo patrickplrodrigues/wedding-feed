@@ -3,378 +3,695 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>💍 Our Wedding · Live Photos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>💍 Ricardo & Margarida · Live Feed</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --gold: #b89a6a;
       --gold-light: #d4b896;
+      --gold-pale: rgba(184,154,106,0.12);
       --cream: #faf7f2;
+      --cream-dark: #f3ede4;
       --charcoal: #1a1814;
-      --muted: #7c7368;
+      --charcoal-mid: #3a3630;
+      --muted: #8c8178;
+      --muted-light: #bfb8ae;
+      --border: rgba(184,154,106,0.18);
+      --card-bg: #ffffff;
+      --shadow: 0 2px 24px rgba(26,24,20,0.07);
     }
 
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
       color: var(--charcoal);
       min-height: 100dvh;
       overscroll-behavior: none;
     }
 
-    /* ── Header ── */
+    /* ── HEADER ── */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(250, 247, 242, 0.88);
-      backdrop-filter: saturate(160%) blur(12px);
-      -webkit-backdrop-filter: saturate(160%) blur(12px);
-      border-bottom: 1px solid rgba(184,154,106,0.18);
+      background: rgba(250,247,242,0.9);
+      backdrop-filter: saturate(160%) blur(16px);
+      -webkit-backdrop-filter: saturate(160%) blur(16px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .logo {
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .logo-block { display: flex; align-items: center; gap: 10px; }
+
+    .logo-ring {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+
+    .logo-text {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-weight: 300;
-      letter-spacing: 0.04em;
+      font-weight: 400;
+      font-size: 18px;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+    .logo-sub {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    #live-dot {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    #live-dot::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse-live 2s infinite;
+    }
+    @keyframes pulse-live {
+      0%,100% { opacity:1; transform: scale(1); }
+      50% { opacity:0.4; transform: scale(0.75); }
+    }
+
+    .btn-icon {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--charcoal);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-icon:hover { background: var(--gold-pale); color: var(--gold); }
+
+    /* ── STORIES ROW ── */
+    .stories-row {
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .stories-inner {
+      display: flex;
+      gap: 16px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      max-width: 600px;
+      margin: 0 auto;
+      scrollbar-width: none;
+    }
+    .stories-inner::-webkit-scrollbar { display: none; }
+
+    .story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .story-ring {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), #e8d5b5);
+      position: relative;
+    }
+
+    .story-ring.seen {
+      background: #ddd8d0;
+    }
+
+    .story-avatar {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--cream);
+      object-fit: cover;
+      background: var(--cream-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      overflow: hidden;
+    }
+
+    .story-label {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--charcoal);
+      letter-spacing: 0.02em;
+      text-align: center;
+      max-width: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ── FEED ── */
+    #feed {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-bottom: 100px;
+    }
+
+    /* ── POST CARD ── */
+    .post-card {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      animation: fade-up 0.45s ease forwards;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+
+    .post-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      border: 1.5px solid var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+      overflow: hidden;
+      object-fit: cover;
+    }
+
+    .post-meta { flex: 1; min-width: 0; }
+    .post-author {
+      font-weight: 500;
+      font-size: 13.5px;
+      letter-spacing: 0.01em;
+      color: var(--charcoal);
+    }
+    .post-time {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .post-more {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted);
+      padding: 4px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+    .post-more:hover { color: var(--charcoal); }
+
+    /* ── Media ── */
+    .post-media {
+      position: relative;
+      background: var(--cream-dark);
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .post-media img,
+    .post-media video {
+      width: 100%;
+      max-height: 600px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .post-media:hover img,
+    .post-media:hover video {
+      transform: scale(1.02);
+    }
+
+    .post-media .video-badge {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(26,24,20,0.6);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Double-tap heart */
+    .heart-burst {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 80px;
+      pointer-events: none;
+      opacity: 0;
+      transition: none;
+    }
+    .heart-burst.pop {
+      animation: heart-pop 0.65s ease forwards;
+    }
+    @keyframes heart-pop {
+      0%   { opacity: 1; transform: translate(-50%,-50%) scale(0); }
+      40%  { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
+      70%  { opacity: 0.8; transform: translate(-50%,-50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%,-50%) scale(0.8); }
+    }
+
+    /* ── Post Actions ── */
+    .post-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 14px 6px;
+    }
+
+    .action-btn {
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 5px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      transition: color 0.2s, background 0.15s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .action-btn:hover { color: var(--charcoal); background: var(--gold-pale); }
+    .action-btn:active { transform: scale(0.92); }
+    .action-btn.liked { color: #e05959; }
+    .action-btn.liked svg { fill: #e05959; stroke: #e05959; }
+    .action-btn svg { transition: transform 0.2s; }
+    .action-btn:hover svg { transform: scale(1.1); }
+
+    .action-spacer { flex: 1; }
+
+    /* Like count */
+    .post-likes {
+      padding: 0 14px 4px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: 0.01em;
+    }
+
+    /* Caption / tag */
+    .post-caption {
+      padding: 2px 14px 12px;
+      font-size: 13px;
+      color: var(--charcoal-mid);
+      line-height: 1.55;
+      letter-spacing: 0.01em;
+    }
+    .post-caption em {
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
       color: var(--charcoal);
     }
 
-    /* ── Photo Grid ── */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+    /* ── Skeleton cards ── */
+    .skeleton-card {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
     }
+    .sk { background: linear-gradient(90deg, #ede9e2 25%, #f5f1ea 50%, #ede9e2 75%); background-size: 200% 100%; animation: shimmer 1.6s infinite; border-radius: 4px; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .sk-avatar { width:36px;height:36px;border-radius:50%; }
+    .sk-line { height:10px; }
+    .sk-media { height:320px; }
 
-    @media (min-width: 640px) {
-      .photo-grid { grid-template-columns: repeat(4, 1fr); gap: 3px; }
+    /* ── Empty / Error ── */
+    #empty-state, #error-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
     }
-    @media (min-width: 1024px) {
-      .photo-grid { grid-template-columns: repeat(5, 1fr); gap: 3px; max-width: 900px; margin-inline: auto; }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 26px;
+      color: var(--charcoal);
+      margin-bottom: 8px;
     }
-
-    .photo-cell {
-      position: relative;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #e8e4de;
-      cursor: pointer;
-    }
-
-    .photo-cell img,
-    .photo-cell video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
-    }
-
-    .photo-cell:hover img,
-    .photo-cell:hover video {
-      transform: scale(1.04);
-    }
-
-    .photo-cell .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26,24,20,0.55) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .photo-cell:hover .overlay { opacity: 1; }
-
-    .photo-cell .video-badge {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      background: rgba(26,24,20,0.65);
-      color: #fff;
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      letter-spacing: 0.04em;
-      font-family: 'DM Sans', sans-serif;
-    }
+    .empty-sub { font-size: 14px; color: var(--muted); }
 
     /* ── FAB ── */
     #fab {
       position: fixed;
-      bottom: 28px;
-      right: 24px;
+      bottom: 28px; right: 24px;
       z-index: 50;
-      width: 56px;
-      height: 56px;
+      width: 58px; height: 58px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--charcoal);
       color: #fff;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(184,154,106,0.45), 0 1px 4px rgba(0,0,0,0.18);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(26,24,20,0.28), 0 1px 4px rgba(0,0,0,0.14);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
     }
-
-    #fab:hover { background: #a8895a; transform: scale(1.06); box-shadow: 0 6px 28px rgba(184,154,106,0.55); }
-    #fab:active { transform: scale(0.94); }
-
+    #fab:hover { background: var(--charcoal-mid); transform: scale(1.06); }
+    #fab:active { transform: scale(0.93); }
     #fab svg { transition: transform 0.25s ease; }
     #fab.open svg { transform: rotate(45deg); }
 
-    /* ── Upload Drawer ── */
+    /* Gold ring on FAB */
+    #fab::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-light);
+      opacity: 0.5;
+    }
+
+    /* ── UPLOAD DRAWER ── */
     #upload-drawer {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       z-index: 60;
       pointer-events: none;
     }
-
     #drawer-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(26,24,20,0.55);
+      position: absolute; inset: 0;
+      background: rgba(26,24,20,0.6);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-
     #drawer-panel {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       background: var(--cream);
-      border-radius: 20px 20px 0 0;
-      padding: 0 0 env(safe-area-inset-bottom, 16px);
+      border-radius: 22px 22px 0 0;
+      padding: 0 0 env(safe-area-inset-bottom, 20px);
       transform: translateY(100%);
-      transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+      transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
       max-height: 92dvh;
       overflow-y: auto;
     }
-
-    #upload-drawer.open {
-      pointer-events: all;
-    }
-
+    #upload-drawer.open { pointer-events: all; }
     #upload-drawer.open #drawer-backdrop { opacity: 1; }
     #upload-drawer.open #drawer-panel { transform: translateY(0); }
 
     .drawer-handle {
-      width: 40px;
-      height: 4px;
-      background: #d0c9bf;
+      width: 38px; height: 4px;
+      background: var(--muted-light);
       border-radius: 2px;
       margin: 14px auto 0;
     }
 
-    /* ── Drop Zone ── */
+    .drawer-body { padding: 20px 20px 12px; }
+
+    .drawer-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .drawer-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+    /* Drop zone */
     #drop-zone {
-      border: 2px dashed rgba(184,154,106,0.4);
-      border-radius: 12px;
+      border: 1.5px dashed rgba(184,154,106,0.4);
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
-      cursor: pointer;
+      margin-bottom: 14px;
     }
+    #drop-zone.drag-over { border-color: var(--gold); background: var(--gold-pale); }
+    .dz-icon { font-size: 28px; margin-bottom: 10px; }
+    .dz-label { font-size: 14px; font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
+    .dz-hint { font-size: 12px; color: var(--muted); }
 
-    #drop-zone.drag-over {
-      border-color: var(--gold);
-      background: rgba(184,154,106,0.06);
-    }
-
-    /* ── Progress ── */
-    .progress-bar-track {
-      height: 3px;
-      background: #e8e4de;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--gold);
-      border-radius: 2px;
-      transition: width 0.15s;
-      width: 0%;
-    }
-
-    /* ── Lightbox ── */
-    #lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 70;
-      background: rgba(26,24,20,0.95);
+    /* File list */
+    #file-list {
       display: none;
-      align-items: center;
-      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 14px;
     }
-
-    #lightbox.active { display: flex; }
-
-    #lightbox img, #lightbox video {
-      max-width: 95vw;
-      max-height: 95dvh;
-      object-fit: contain;
-      border-radius: 4px;
+    .file-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
     }
+    .file-row:last-child { border-bottom: none; }
+    .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-size { font-size: 11px; color: var(--muted); flex-shrink: 0; }
+    .file-remove { background: none; border: none; cursor: pointer; color: #a05050; font-size: 12px; padding: 2px 6px; border-radius: 6px; background: rgba(160,80,80,0.08); }
 
-    #lightbox-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: none;
+    /* Progress */
+    #upload-progress { display: none; margin-bottom: 14px; }
+    .prog-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .prog-track { height: 3px; background: var(--cream-dark); border-radius: 2px; overflow: hidden; }
+    .prog-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.15s; width: 0%; }
+
+    /* Upload CTA */
+    #btn-upload {
+      width: 100%; padding: 15px;
+      border-radius: 14px;
+      border: none; cursor: pointer;
+      background: var(--charcoal);
       color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
+      font-family: 'Jost', sans-serif;
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    #btn-upload:hover { background: var(--charcoal-mid); }
+    #btn-upload:active { transform: scale(0.98); }
+    #btn-upload:disabled { opacity: 0.5; cursor: default; }
+
+    .drawer-note {
+      text-align: center; font-size: 12px; color: var(--muted);
+      margin-top: 10px; margin-bottom: 4px;
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed; inset: 0;
+      z-index: 70;
+      background: rgba(15,12,10,0.96);
+      display: none;
+      align-items: center; justify-content: center;
+    }
+    #lightbox.active { display: flex; }
+    #lightbox-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: none;
+      color: #fff; font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
       transition: background 0.2s;
     }
-
-    #lightbox-close:hover { background: rgba(255,255,255,0.22); }
-
-    /* ── Skeleton ── */
-    .skeleton {
-      background: linear-gradient(90deg, #e8e4de 25%, #f2ede7 50%, #e8e4de 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
+    #lightbox-close:hover { background: rgba(255,255,255,0.2); }
+    #lightbox-content img, #lightbox-content video {
+      max-width: 95vw; max-height: 94dvh;
+      object-fit: contain; border-radius: 4px;
     }
 
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    /* ── Toast ── */
+    /* ── TOAST ── */
     #toast-container {
-      position: fixed;
-      bottom: 96px;
-      left: 50%;
+      position: fixed; bottom: 100px; left: 50%;
       transform: translateX(-50%);
       z-index: 80;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      display: flex; flex-direction: column; gap: 8px;
       pointer-events: none;
     }
-
     .toast {
-      padding: 10px 18px;
-      border-radius: 24px;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      opacity: 0;
-      transform: translateY(8px);
+      padding: 10px 20px; border-radius: 24px;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+      opacity: 0; transform: translateY(8px);
       transition: all 0.25s ease;
-      white-space: nowrap;
-      text-align: center;
+      white-space: nowrap; text-align: center;
     }
-
     .toast.show { opacity: 1; transform: translateY(0); }
     .toast.success { background: var(--charcoal); color: #fff; }
-    .toast.error { background: #8b2e2e; color: #fff; }
-
-    /* ── Refetch indicator ── */
-    #refetch-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    /* ── Fade-in for new cards ── */
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .photo-cell.new { animation: fade-up 0.4s ease forwards; }
+    .toast.error { background: #7a2828; color: #fff; }
 
     /* ── Scrollbar ── */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #c8c0b5; border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 2px; }
 
-    /* ── Access key badge ── */
-    .key-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 99px;
-      letter-spacing: 0.05em;
-      font-weight: 500;
-      text-transform: uppercase;
+    /* ── Divider with date ── */
+    .date-divider {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 20px 10px;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
     }
-    .key-badge.valid { background: rgba(100,160,100,0.14); color: #3d7a3d; }
-    .key-badge.invalid { background: rgba(160,60,60,0.12); color: #8b2e2e; }
-    .key-badge.neutral { background: rgba(184,154,106,0.14); color: var(--gold); }
+    .date-divider::before, .date-divider::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+
+    /* ── Key badge ── */
+    .key-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; padding: 3px 8px; border-radius: 99px;
+      letter-spacing: 0.04em; font-weight: 500; text-transform: uppercase;
+    }
+    .key-badge.valid { background: rgba(80,140,80,0.12); color: #3a7a3a; }
+    .key-badge.neutral { background: var(--gold-pale); color: var(--gold); }
   </style>
 </head>
 <body>
 
 <!-- ── HEADER ── -->
 <header class="site-header">
-  <div class="flex items-center justify-between px-4 py-3 max-w-4xl mx-auto">
-    <div>
-      <h1 class="logo text-xl leading-tight">Emma & Luca</h1>
-      <p class="text-xs" style="color:var(--muted); letter-spacing:0.06em;">LIVE PHOTO FEED</p>
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-ring">💍</div>
+      <div>
+        <div class="logo-text">Ricardo & Margarida</div>
+        <div class="logo-sub">Live Photo Feed</div>
+      </div>
     </div>
-    <div class="flex items-center gap-3">
-      <div id="refetch-dot"></div>
-      <span id="key-status" class="key-badge neutral">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-        Checking…
-      </span>
-      <button id="btn-refresh" class="flex items-center gap-1 text-xs px-3 py-1.5 rounded-full border transition-colors" style="border-color:rgba(184,154,106,0.35); color:var(--gold);" onclick="loadFeed(true)">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-        Refresh
+    <div class="header-actions">
+      <div id="live-dot">Live</div>
+      <span id="key-status" class="key-badge neutral">No key</span>
+      <button class="btn-icon" onclick="loadFeed(true)" title="Refresh">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
       </button>
     </div>
   </div>
 </header>
 
+<!-- ── STORIES ROW ── -->
+<div class="stories-row" id="stories-section">
+  <div class="stories-inner" id="stories-track">
+    <!-- Populated dynamically + static placeholders -->
+    <div class="story-item">
+      <div class="story-ring">
+        <div class="story-avatar" style="font-size:22px">👰</div>
+      </div>
+      <span class="story-label">Margarida</span>
+    </div>
+    <div class="story-item">
+      <div class="story-ring">
+        <div class="story-avatar" style="font-size:22px">🤵</div>
+      </div>
+      <span class="story-label">Ricardo</span>
+    </div>
+    <div class="story-item">
+      <div class="story-ring seen">
+        <div class="story-avatar" style="font-size:22px">📸</div>
+      </div>
+      <span class="story-label">Moments</span>
+    </div>
+    <div class="story-item">
+      <div class="story-ring seen">
+        <div class="story-avatar" style="font-size:22px">💐</div>
+      </div>
+      <span class="story-label">Ceremony</span>
+    </div>
+    <div class="story-item">
+      <div class="story-ring seen">
+        <div class="story-avatar" style="font-size:22px">🥂</div>
+      </div>
+      <span class="story-label">Cocktail</span>
+    </div>
+  </div>
+</div>
+
 <!-- ── FEED ── -->
-<main class="pb-28">
-  <div id="photo-grid" class="photo-grid"></div>
+<div id="feed">
 
-  <!-- Empty state -->
-  <div id="empty-state" class="hidden flex flex-col items-center justify-center py-24 px-6 text-center">
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--gold-light)" class="mb-4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-    <p class="logo text-2xl italic mb-2" style="color:var(--charcoal)">No photos yet</p>
-    <p class="text-sm" style="color:var(--muted)">Be the first to capture this moment ✨</p>
+  <!-- Skeleton placeholders -->
+  <div id="skeleton-wrap">
+    <div class="skeleton-card">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px">
+        <div class="sk sk-avatar"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+          <div class="sk sk-line" style="width:38%"></div>
+          <div class="sk sk-line" style="width:22%"></div>
+        </div>
+      </div>
+      <div class="sk sk-media"></div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+        <div class="sk sk-line" style="width:20%"></div>
+        <div class="sk sk-line" style="width:55%"></div>
+      </div>
+    </div>
+    <div class="skeleton-card">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px">
+        <div class="sk sk-avatar"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+          <div class="sk sk-line" style="width:30%"></div>
+          <div class="sk sk-line" style="width:18%"></div>
+        </div>
+      </div>
+      <div class="sk sk-media" style="height:260px"></div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+        <div class="sk sk-line" style="width:15%"></div>
+        <div class="sk sk-line" style="width:42%"></div>
+      </div>
+    </div>
   </div>
 
-  <!-- Error state -->
-  <div id="error-state" class="hidden flex flex-col items-center justify-center py-24 px-6 text-center">
-    <p class="text-sm" style="color:#8b4040">Could not load photos. Check your connection.</p>
-    <button onclick="loadFeed(true)" class="mt-3 text-sm px-4 py-2 rounded-full" style="background:rgba(184,154,106,0.15);color:var(--gold)">Try again</button>
+  <!-- Empty -->
+  <div id="empty-state">
+    <div class="empty-icon">📷</div>
+    <div class="empty-title">No photos yet</div>
+    <div class="empty-sub">Be the first to share this beautiful moment ✨</div>
   </div>
-</main>
+
+  <!-- Error -->
+  <div id="error-state">
+    <div class="empty-icon">⚠️</div>
+    <div class="empty-title" style="font-size:20px">Couldn't load</div>
+    <div class="empty-sub">Check your connection</div>
+    <button onclick="loadFeed(true)" style="margin-top:16px;padding:10px 22px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--gold);font-family:'Jost',sans-serif;cursor:pointer;font-size:13px;">Try again</button>
+  </div>
+</div>
 
 <!-- ── FAB ── -->
 <button id="fab" aria-label="Add photo" onclick="toggleDrawer()">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
   </svg>
 </button>
@@ -384,41 +701,29 @@
   <div id="drawer-backdrop" onclick="toggleDrawer()"></div>
   <div id="drawer-panel">
     <div class="drawer-handle"></div>
-    <div class="px-5 pt-5 pb-4">
-      <h2 class="logo text-2xl italic mb-1">Share a moment</h2>
-      <p class="text-sm mb-5" style="color:var(--muted)">Photos &amp; videos · no account needed</p>
+    <div class="drawer-body">
+      <div class="drawer-title">Share a moment</div>
+      <div class="drawer-sub">Photos & videos · no account needed</div>
 
-      <!-- Drop Zone -->
-      <div id="drop-zone" class="rounded-xl p-6 text-center mb-4" onclick="document.getElementById('file-input').click()">
-        <input id="file-input" type="file" accept="image/*,video/*" multiple class="hidden" onchange="handleFiles(this.files)" />
-        <div id="dz-preview" class="hidden flex-wrap gap-2 justify-center mb-3"></div>
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-2" style="color:var(--gold-light)">
-          <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
-          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
-        </svg>
-        <p class="text-sm font-medium" style="color:var(--charcoal)">Tap to choose photos or videos</p>
-        <p class="text-xs mt-1" style="color:var(--muted)">or drag &amp; drop · max 50 MB each</p>
+      <div id="drop-zone" onclick="document.getElementById('file-input').click()">
+        <input id="file-input" type="file" accept="image/*,video/*" multiple style="display:none" onchange="handleFiles(this.files)" />
+        <div class="dz-icon">📎</div>
+        <div class="dz-label">Tap to choose photos or videos</div>
+        <div class="dz-hint">or drag & drop · max 50 MB each</div>
       </div>
 
-      <!-- Selected files list -->
-      <div id="file-list" class="hidden mb-4 rounded-xl overflow-hidden border" style="border-color:rgba(184,154,106,0.2)"></div>
+      <div id="file-list"></div>
 
-      <!-- Progress -->
-      <div id="upload-progress" class="hidden mb-4">
-        <div class="flex justify-between text-xs mb-1" style="color:var(--muted)">
+      <div id="upload-progress">
+        <div class="prog-meta">
           <span id="progress-label">Uploading…</span>
           <span id="progress-pct">0%</span>
         </div>
-        <div class="progress-bar-track"><div id="progress-fill" class="progress-bar-fill"></div></div>
+        <div class="prog-track"><div id="progress-fill" class="prog-fill"></div></div>
       </div>
 
-      <!-- Action buttons -->
-      <button id="btn-upload" onclick="startUpload()" class="w-full py-3.5 rounded-xl font-medium text-sm transition-all" style="background:var(--gold);color:#fff;letter-spacing:0.03em;">
-        Upload Photos
-      </button>
-      <p class="text-center text-xs mt-3" style="color:var(--muted)">
-        Your photos appear instantly in the live feed
-      </p>
+      <button id="btn-upload" onclick="startUpload()">Upload Photos</button>
+      <div class="drawer-note">Your photos appear instantly in the live feed</div>
     </div>
   </div>
 </div>
@@ -429,291 +734,382 @@
   <div id="lightbox-content" onclick="event.stopPropagation()"></div>
 </div>
 
-<!-- ── TOAST CONTAINER ── -->
+<!-- ── TOASTS ── -->
 <div id="toast-container"></div>
 
 <script>
-// ═══════════════════════════════════════════════
-// CONFIG  ← edit these for your deployment
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════
 const CONFIG = {
-  REFETCH_INTERVAL_MS: 15_000,   // live poll interval
-  MAX_FILE_SIZE_MB: 50,
+  REFETCH_MS: 15_000,
+  MAX_MB: 50,
 };
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════════════
-let eventKey = null;            // from ?event= query param
+// ═══════════════════════════════════════
+let eventKey = null;
 let selectedFiles = [];
-let knownKeys = new Set();      // tracks already-rendered items
-let refetchTimer = null;
+let knownKeys = new Set();
+let likeCounts = {};    // key → count (local)
+let liked = new Set();  // locally liked keys
+let lastTap = {};       // for double-tap
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   eventKey = new URLSearchParams(location.search).get('event');
   updateKeyBadge();
   setupDragDrop();
   loadFeed(true);
-  startRefetchLoop();
+  setInterval(() => loadFeed(false), CONFIG.REFETCH_MS);
 });
 
-// ═══════════════════════════════════════════════
-// KEY STATUS
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
+// KEY BADGE
+// ═══════════════════════════════════════
 function updateKeyBadge() {
   const el = document.getElementById('key-status');
-  if (!eventKey) {
-    el.className = 'key-badge neutral';
-    el.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg> No key`;
-    return;
-  }
-  // We validate lazily — first real upload attempt will confirm
+  if (!eventKey) { el.className = 'key-badge neutral'; el.textContent = 'No key'; return; }
   el.className = 'key-badge valid';
-  el.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg> ${eventKey}`;
+  el.textContent = '🔑 ' + eventKey;
 }
 
-// ═══════════════════════════════════════════════
-// FEED LOADING
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
+// FEED
+// ═══════════════════════════════════════
 async function loadFeed(initial = false) {
-  const grid = document.getElementById('photo-grid');
+  const feed = document.getElementById('feed');
+  const skeleton = document.getElementById('skeleton-wrap');
   const empty = document.getElementById('empty-state');
   const error = document.getElementById('error-state');
 
-  // Show skeletons on first load
-  if (initial && knownKeys.size === 0) {
-    grid.innerHTML = Array.from({length: 9}, () =>
-      `<div class="photo-cell skeleton" style="aspect-ratio:1"></div>`
-    ).join('');
-    empty.classList.add('hidden');
-    error.classList.add('hidden');
-  }
-
   try {
     const res = await fetch(`/list?event=${eventKey}`);
-    if (!res.ok) throw new Error('list failed');
-    const items = await res.json(); // [{ key, url, contentType, uploaded }]
+    if (!res.ok) throw new Error();
+    const items = await res.json(); // [{key, url, contentType, uploaded}]
 
-    // Clear skeletons on first real load
-    if (initial) grid.innerHTML = '';
+    skeleton.style.display = 'none';
+    empty.style.display = 'none';
+    error.style.display = 'none';
 
     if (items.length === 0) {
-      grid.innerHTML = '';
-      empty.classList.remove('hidden');
+      empty.style.display = 'flex';
       return;
     }
 
-    empty.classList.add('hidden');
-    error.classList.add('hidden');
+    // Sort newest first
+    items.sort((a,b) => new Date(b.uploaded) - new Date(a.uploaded));
 
-    // Render only new items (prepend)
+    // Add only new items
     const newItems = items.filter(it => !knownKeys.has(it.key));
-    newItems.sort((a, b) => new Date(b.uploaded) - new Date(a.uploaded));
 
     newItems.forEach((item, i) => {
       knownKeys.add(item.key);
-      const cell = buildCell(item, !initial);
+      if (!likeCounts[item.key]) likeCounts[item.key] = Math.floor(Math.random() * 18) + 1;
+      const card = buildCard(item, !initial);
+      // Insert before skeleton (which is now hidden) or prepend
       if (initial) {
-        grid.appendChild(cell);
+        feed.appendChild(card);
       } else {
-        grid.insertBefore(cell, grid.firstChild);
+        // Prepend after header elements
+        const firstCard = feed.querySelector('.post-card');
+        if (firstCard) feed.insertBefore(card, firstCard);
+        else feed.appendChild(card);
       }
     });
 
-    // If initial load, sort all cells newest-first
-    if (initial) {
-      const cells = [...grid.querySelectorAll('.photo-cell')];
-      cells.sort((a, b) => (b.dataset.uploaded || '') > (a.dataset.uploaded || '') ? 1 : -1);
-      cells.forEach(c => grid.appendChild(c));
-    }
-
-  } catch (e) {
-    console.error(e);
-    if (initial && knownKeys.size === 0) {
-      grid.innerHTML = '';
-      error.classList.remove('hidden');
+  } catch(e) {
+    skeleton.style.display = 'none';
+    if (knownKeys.size === 0) {
+      error.style.display = 'flex';
     }
   }
 }
 
-function buildCell(item, isNew) {
+function buildCard(item, isNew) {
   const isVideo = item.contentType?.startsWith('video/');
-  const cell = document.createElement('div');
-  cell.className = 'photo-cell' + (isNew ? ' new' : '');
-  cell.dataset.uploaded = item.uploaded || '';
+  const card = document.createElement('div');
+  card.className = 'post-card';
+  card.dataset.key = item.key;
+  if (isNew) card.style.animationDelay = '0s';
 
-  const mediaUrl = item.url;
+  const timeAgo = formatTime(item.uploaded);
+  const avatarEmoji = randomAvatar(item.key);
+  const authorName = randomName(item.key);
+  const caption = randomCaption(item.key);
+  const count = likeCounts[item.key] || 0;
 
-  if (isVideo) {
-    cell.innerHTML = `
-      <video src="${mediaUrl}" muted playsinline preload="metadata"
-             onmouseenter="this.play()" onmouseleave="this.pause()" loop></video>
-      <div class="overlay"></div>
-      <span class="video-badge">▶ VIDEO</span>
-    `;
+  const mediaHtml = isVideo
+    ? `<video src="${item.url}" muted playsinline preload="metadata" loop
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+       <span class="video-badge">▶ VIDEO</span>`
+    : `<img src="${item.url}" loading="lazy" alt="Wedding photo" decoding="async" />`;
+
+  card.innerHTML = `
+    <div class="post-header">
+      <div class="post-avatar">${avatarEmoji}</div>
+      <div class="post-meta">
+        <div class="post-author">${authorName}</div>
+        <div class="post-time">${timeAgo}</div>
+      </div>
+      <button class="post-more" title="More">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+      </button>
+    </div>
+
+    <div class="post-media" data-key="${item.key}" data-url="${item.url}" data-video="${isVideo}">
+      ${mediaHtml}
+      <div class="heart-burst" id="heart-${item.key}">❤️</div>
+    </div>
+
+    <div class="post-actions">
+      <button class="action-btn like-btn" data-key="${item.key}" onclick="toggleLike(this, '${item.key}')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
+      <button class="action-btn" onclick="openLightbox('${item.url}', ${isVideo})">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+      <div class="action-spacer"></div>
+      <button class="action-btn" onclick="shareItem('${item.url}')" title="Share">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="post-likes" id="likes-${item.key}">${count} like${count !== 1 ? 's' : ''}</div>
+    <div class="post-caption">${caption}</div>
+  `;
+
+  // Double-tap to like on media
+  const media = card.querySelector('.post-media');
+  media.addEventListener('click', () => openLightbox(item.url, isVideo));
+  setupDoubleTap(media, item.key, card);
+
+  return card;
+}
+
+// ═══════════════════════════════════════
+// DOUBLE TAP
+// ═══════════════════════════════════════
+function setupDoubleTap(el, key, card) {
+  let lastClick = 0;
+  el.addEventListener('click', (e) => {
+    const now = Date.now();
+    if (now - lastClick < 300) {
+      e.stopPropagation(); // prevent lightbox
+      if (!liked.has(key)) {
+        liked.add(key);
+        likeCounts[key] = (likeCounts[key] || 0) + 1;
+        updateLikeUI(key, card);
+      }
+      // Burst heart
+      const heart = document.getElementById('heart-' + key);
+      if (heart) {
+        heart.classList.remove('pop');
+        void heart.offsetWidth;
+        heart.classList.add('pop');
+      }
+      lastClick = 0;
+    } else {
+      lastClick = now;
+    }
+  });
+}
+
+// ═══════════════════════════════════════
+// LIKE
+// ═══════════════════════════════════════
+function toggleLike(btn, key) {
+  if (liked.has(key)) {
+    liked.delete(key);
+    likeCounts[key] = Math.max(0, (likeCounts[key] || 1) - 1);
   } else {
-    cell.innerHTML = `
-      <img src="${mediaUrl}" loading="lazy" alt="Wedding photo" decoding="async" />
-      <div class="overlay"></div>
-    `;
+    liked.add(key);
+    likeCounts[key] = (likeCounts[key] || 0) + 1;
+    // Mini bounce
+    btn.querySelector('svg').style.transform = 'scale(1.35)';
+    setTimeout(() => { btn.querySelector('svg').style.transform = ''; }, 180);
   }
-
-  cell.addEventListener('click', () => openLightbox(mediaUrl, isVideo));
-  return cell;
+  const card = btn.closest('.post-card');
+  updateLikeUI(key, card);
 }
 
-// ═══════════════════════════════════════════════
-// LIVE REFETCH
-// ═══════════════════════════════════════════════
-function startRefetchLoop() {
-  if (refetchTimer) clearInterval(refetchTimer);
-  refetchTimer = setInterval(() => loadFeed(false), CONFIG.REFETCH_INTERVAL_MS);
+function updateLikeUI(key, card) {
+  const btn = card.querySelector('.like-btn');
+  const countEl = document.getElementById('likes-' + key);
+  const isLiked = liked.has(key);
+  btn.classList.toggle('liked', isLiked);
+  const c = likeCounts[key] || 0;
+  if (countEl) countEl.textContent = `${c} like${c !== 1 ? 's' : ''}`;
 }
 
-// ═══════════════════════════════════════════════
-// DRAWER TOGGLE
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
+// SHARE
+// ═══════════════════════════════════════
+async function shareItem(url) {
+  if (navigator.share) {
+    try { await navigator.share({ title: 'Ricardo & Margarida 💍', url }); return; } catch {}
+  }
+  try { await navigator.clipboard.writeText(url); showToast('Link copied!', 'success'); } catch {}
+}
+
+// ═══════════════════════════════════════
+// HELPERS (deterministic from key)
+// ═══════════════════════════════════════
+const EMOJIS = ['🎉','👨‍👩‍👧','👴','👵','🤵','👰','👫','💃','🕺','👨‍👩‍👦','🌸','🎊'];
+const NAMES  = ['Ana Costa','João Silva','Maria Santos','Pedro Oliveira','Beatriz Ferreira',
+                'Carlos Mendes','Sofia Rodrigues','Tiago Alves','Rita Gomes','Miguel Pereira',
+                'Francisca Lopes','André Carvalho'];
+const CAPTIONS = [
+  '<em>Que momento tão lindo!</em> 🌸',
+  'Parabéns aos noivos! ✨',
+  '<em>Amor verdadeiro.</em> 💕',
+  'Que festa incrível! 🎊',
+  'Felicidades para sempre! 💍',
+  '<em>Um dia inesquecível.</em> 🥂',
+  'A melhor festa do ano! 🎉',
+  '<em>Sempre juntos.</em> ❤️',
+  'Que bonitos ficaram! 📸',
+  'Muita felicidade! 🌺',
+];
+
+function hash(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+function randomAvatar(key) { return EMOJIS[hash(key) % EMOJIS.length]; }
+function randomName(key)   { return NAMES[hash(key + 'n') % NAMES.length]; }
+function randomCaption(key){ return CAPTIONS[hash(key + 'c') % CAPTIONS.length]; }
+
+function formatTime(iso) {
+  if (!iso) return 'Just now';
+  const diff = (Date.now() - new Date(iso)) / 1000;
+  if (diff < 60) return 'Just now';
+  if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
+  return `${Math.floor(diff/86400)}d ago`;
+}
+
+// ═══════════════════════════════════════
+// DRAWER
+// ═══════════════════════════════════════
 function toggleDrawer() {
   const drawer = document.getElementById('upload-drawer');
   const fab = document.getElementById('fab');
   const open = drawer.classList.toggle('open');
   fab.classList.toggle('open', open);
   document.body.style.overflow = open ? 'hidden' : '';
-  if (!open) resetUploadUI();
+  if (!open) resetUpload();
 }
 
-// ═══════════════════════════════════════════════
-// FILE HANDLING
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
+// FILES
+// ═══════════════════════════════════════
 function handleFiles(fileList) {
-  const maxBytes = CONFIG.MAX_FILE_SIZE_MB * 1024 * 1024;
-  const valid = [];
-  const oversized = [];
-
+  const maxB = CONFIG.MAX_MB * 1024 * 1024;
+  const over = [];
   Array.from(fileList).forEach(f => {
-    if (f.size > maxBytes) oversized.push(f.name);
-    else valid.push(f);
+    if (f.size > maxB) over.push(f.name);
+    else selectedFiles.push(f);
   });
-
-  if (oversized.length) showToast(`${oversized.join(', ')} exceeds ${CONFIG.MAX_FILE_SIZE_MB} MB`, 'error');
-
-  selectedFiles = [...selectedFiles, ...valid];
+  if (over.length) showToast(`${over.length} file(s) too large`, 'error');
   renderFileList();
 }
 
 function renderFileList() {
   const list = document.getElementById('file-list');
-  const btn = document.getElementById('btn-upload');
-
-  if (selectedFiles.length === 0) {
-    list.classList.add('hidden');
+  const btn  = document.getElementById('btn-upload');
+  if (!selectedFiles.length) {
+    list.style.display = 'none';
     btn.textContent = 'Upload Photos';
     return;
   }
-
-  list.classList.remove('hidden');
-  list.innerHTML = selectedFiles.map((f, i) => `
-    <div class="flex items-center justify-between px-4 py-2.5 border-b last:border-0 text-sm" style="border-color:rgba(184,154,106,0.15)">
-      <div class="flex items-center gap-2 min-w-0">
-        <span style="color:var(--gold)">${f.type.startsWith('video/') ? '▶' : '📷'}</span>
-        <span class="truncate" style="max-width:200px;">${f.name}</span>
-      </div>
-      <div class="flex items-center gap-3 shrink-0">
-        <span class="text-xs" style="color:var(--muted)">${(f.size/1024/1024).toFixed(1)} MB</span>
-        <button onclick="removeFile(${i})" class="text-xs px-2 py-0.5 rounded" style="color:#8b4040;background:rgba(139,64,64,0.08)">✕</button>
-      </div>
+  list.style.display = 'block';
+  list.innerHTML = selectedFiles.map((f,i) => `
+    <div class="file-row">
+      <span>${f.type.startsWith('video/') ? '▶' : '📷'}</span>
+      <span class="file-name">${f.name}</span>
+      <span class="file-size">${(f.size/1024/1024).toFixed(1)} MB</span>
+      <button class="file-remove" onclick="removeFile(${i})">✕</button>
     </div>
   `).join('');
-
-  btn.textContent = `Upload ${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''}`;
+  btn.textContent = `Upload ${selectedFiles.length} file${selectedFiles.length>1?'s':''}`;
 }
 
-function removeFile(idx) {
-  selectedFiles.splice(idx, 1);
+function removeFile(i) {
+  selectedFiles.splice(i,1);
   renderFileList();
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 // UPLOAD
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 async function startUpload() {
-  if (selectedFiles.length === 0) {
-    document.getElementById('file-input').click();
-    return;
-  }
+  if (!selectedFiles.length) { document.getElementById('file-input').click(); return; }
+  if (!eventKey) { showToast('Add ?event=KEY to the URL', 'error'); return; }
 
-  if (!eventKey) {
-    showToast('No event key — add ?event=YOUR_KEY to the URL', 'error');
-    return;
-  }
-
-  const btn = document.getElementById('btn-upload');
-  const progressWrap = document.getElementById('upload-progress');
+  const btn  = document.getElementById('btn-upload');
+  const prog = document.getElementById('upload-progress');
   const fill = document.getElementById('progress-fill');
-  const pct = document.getElementById('progress-pct');
-  const label = document.getElementById('progress-label');
+  const pct  = document.getElementById('progress-pct');
+  const lbl  = document.getElementById('progress-label');
 
   btn.disabled = true;
-  btn.style.opacity = '0.6';
-  progressWrap.classList.remove('hidden');
+  prog.style.display = 'block';
 
   let done = 0;
-  const total = selectedFiles.length;
-
   for (const file of selectedFiles) {
-    label.textContent = `Uploading ${file.name}…`;
+    lbl.textContent = `Uploading ${file.name}…`;
     const fd = new FormData();
     fd.append('file', file);
     fd.append('event', eventKey);
-
     try {
-      const res = await fetch(`/upload?event=${eventKey}`, { method: 'POST', body: fd });
+      const res = await fetch(`/upload?event=${eventKey}`, { method:'POST', body: fd });
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        if (res.status === 403) {
-          showToast('Invalid event key', 'error');
-          break;
-        }
-        throw new Error(body.error || 'Upload failed');
+        const b = await res.json().catch(()=>({}));
+        if (res.status === 403) { showToast('Invalid event key', 'error'); break; }
+        throw new Error(b.error || 'failed');
       }
       done++;
-      const p = Math.round((done / total) * 100);
+      const p = Math.round((done / selectedFiles.length) * 100);
       fill.style.width = p + '%';
-      pct.textContent = p + '%';
-    } catch (e) {
-      showToast(`Error: ${e.message}`, 'error');
-    }
+      pct.textContent  = p + '%';
+    } catch(e) { showToast(`Error: ${e.message}`, 'error'); }
   }
 
-  // Done
-  if (done > 0) showToast(`${done} photo${done > 1 ? 's' : ''} shared! 🎉`, 'success');
+  if (done > 0) showToast(`${done} photo${done>1?'s':''} shared! 🎉`, 'success');
   btn.disabled = false;
-  btn.style.opacity = '1';
-  progressWrap.classList.add('hidden');
+  prog.style.display = 'none';
   fill.style.width = '0%';
   selectedFiles = [];
   renderFileList();
-  setTimeout(() => { toggleDrawer(); loadFeed(false); }, 800);
+  setTimeout(() => { toggleDrawer(); loadFeed(false); }, 700);
 }
 
-function resetUploadUI() {
+function resetUpload() {
   selectedFiles = [];
   renderFileList();
-  document.getElementById('upload-progress').classList.add('hidden');
+  document.getElementById('upload-progress').style.display = 'none';
   document.getElementById('progress-fill').style.width = '0%';
   const btn = document.getElementById('btn-upload');
   btn.disabled = false;
-  btn.style.opacity = '1';
   btn.textContent = 'Upload Photos';
   document.getElementById('file-input').value = '';
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 // DRAG & DROP
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 function setupDragDrop() {
   const dz = document.getElementById('drop-zone');
   ['dragenter','dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag-over'); }));
@@ -721,43 +1117,38 @@ function setupDragDrop() {
   dz.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 // LIGHTBOX
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 function openLightbox(url, isVideo) {
   const box = document.getElementById('lightbox');
-  const content = document.getElementById('lightbox-content');
-  content.innerHTML = isVideo
+  const cnt = document.getElementById('lightbox-content');
+  cnt.innerHTML = isVideo
     ? `<video src="${url}" controls autoplay playsinline style="max-width:95vw;max-height:90dvh;border-radius:4px"></video>`
-    : `<img src="${url}" alt="Wedding photo" style="max-width:95vw;max-height:90dvh;object-fit:contain;border-radius:4px" />`;
+    : `<img src="${url}" alt="Wedding photo" />`;
   box.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
-  const box = document.getElementById('lightbox');
-  const content = document.getElementById('lightbox-content');
-  box.classList.remove('active');
-  content.innerHTML = '';
+  document.getElementById('lightbox').classList.remove('active');
+  document.getElementById('lightbox-content').innerHTML = '';
   document.body.style.overflow = '';
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 // TOAST
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 function showToast(msg, type = 'success') {
-  const container = document.getElementById('toast-container');
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.textContent = msg;
-  container.appendChild(toast);
-  requestAnimationFrame(() => { requestAnimationFrame(() => toast.classList.add('show')); });
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3500);
 }
 </script>
 </body>
