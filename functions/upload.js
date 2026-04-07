@@ -12,6 +12,8 @@
 
 const MAX_FILE_SIZE = 52_428_800; // 50 MB
 
+export const runtime = 'edge';
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
