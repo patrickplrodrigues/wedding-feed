@@ -33,101 +33,61 @@
       overscroll-behavior: none;
     }
 
-    /* ── HEADER ── */
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
+      position: sticky; top: 0; z-index: 40;
       background: rgba(250,247,242,0.92);
       backdrop-filter: saturate(160%) blur(18px);
       -webkit-backdrop-filter: saturate(160%) blur(18px);
       border-bottom: 1px solid var(--border);
     }
-
     .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 11px 18px;
-      max-width: 680px;
-      margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 18px; max-width: 680px; margin: 0 auto;
     }
-
     .logo-block { display: flex; align-items: center; gap: 10px; }
-
     .logo-ring {
-      width: 34px; height: 34px;
-      border-radius: 50%;
+      width: 34px; height: 34px; border-radius: 50%;
       border: 1.5px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px;
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
     }
-
     .logo-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 18px;
-      letter-spacing: 0.03em;
-      line-height: 1.15;
-      color: var(--charcoal);
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-weight: 400; font-size: 18px; letter-spacing: 0.03em;
+      line-height: 1.15; color: var(--charcoal);
     }
     .logo-sub {
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      font-size: 9.5px;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
+      font-family: 'Jost', sans-serif; font-weight: 400; font-size: 9.5px;
+      letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase;
     }
-
     .header-actions { display: flex; align-items: center; gap: 6px; }
-
     #live-dot {
       display: flex; align-items: center; gap: 5px;
       font-size: 9.5px; font-weight: 500; letter-spacing: 0.08em;
       text-transform: uppercase; color: var(--gold);
     }
     #live-dot::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: pulse-live 2s infinite;
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); animation: pulse-live 2s infinite;
     }
     @keyframes pulse-live {
-      0%,100% { opacity:1; transform: scale(1); }
-      50% { opacity:0.35; transform: scale(0.7); }
+      0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.35; transform:scale(0.7); }
     }
-
     .btn-icon {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--charcoal);
-      cursor: pointer;
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--charcoal); cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.2s, color 0.2s;
     }
     .btn-icon:hover { background: var(--gold-pale); color: var(--gold); }
-    .btn-icon.active { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
-
-    /* ── VIEW TOGGLE ── */
     .view-toggle {
-      display: flex;
-      gap: 2px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--cream-dark);
+      display: flex; gap: 2px;
+      border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden; background: var(--cream-dark);
     }
     .view-btn {
-      padding: 6px 10px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      color: var(--muted);
+      padding: 6px 10px; border: none; background: transparent;
+      cursor: pointer; color: var(--muted);
       display: flex; align-items: center;
       transition: background 0.18s, color 0.18s;
     }
@@ -135,87 +95,58 @@
     .view-btn:first-child { border-radius: 7px 0 0 7px; }
     .view-btn:last-child  { border-radius: 0 7px 7px 0; }
 
-    /* ── FEED ── */
-    #feed-wrap {
-      max-width: 680px;
-      margin: 0 auto;
-      padding-bottom: 110px;
-    }
+    #feed-wrap { max-width: 680px; margin: 0 auto; padding-bottom: 110px; }
 
-    /* Feed mode */
     #feed-wrap.mode-feed .post-card { display: block; }
     #feed-wrap.mode-feed .grid-card { display: none; }
-
-    /* Grid mode */
     #feed-wrap.mode-grid #feed-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      padding: 2px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px;
     }
     #feed-wrap.mode-grid .post-card { display: none; }
     #feed-wrap.mode-grid .grid-card { display: block; }
 
-    /* ── POST CARD (feed) ── */
     .post-card {
       background: var(--card-bg);
       border-bottom: 1px solid var(--border);
       animation: fade-up 0.4s ease forwards;
     }
-
     @keyframes fade-up {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:translateY(0); }
     }
-
     .post-media {
-      position: relative;
-      background: var(--cream-dark);
-      overflow: hidden;
-      cursor: zoom-in;
+      position: relative; background: var(--cream-dark);
+      overflow: hidden; cursor: zoom-in;
     }
-
-    .post-media img,
-    .post-media video {
-      width: 100%;
-      max-height: 580px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.45s ease;
+    .post-media img, .post-media video {
+      width: 100%; max-height: 580px; object-fit: cover;
+      display: block; transition: transform 0.45s ease;
     }
-
-    .post-media:hover img,
-    .post-media:hover video { transform: scale(1.015); }
-
+    .post-media:hover img, .post-media:hover video { transform: scale(1.015); }
     .video-badge {
-      position: absolute;
-      top: 10px; right: 10px;
-      background: rgba(26,24,20,0.58);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 99px;
-      letter-spacing: 0.06em;
-      backdrop-filter: blur(4px);
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(26,24,20,0.58); color: #fff;
+      font-size: 10px; font-weight: 500; padding: 3px 10px;
+      border-radius: 99px; letter-spacing: 0.06em; backdrop-filter: blur(4px);
+    }
+
+    /* ── CAPTION — the fix lives here ── */
+    .post-caption {
+      padding: 10px 14px 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--charcoal-mid);
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     .post-footer {
       padding: 10px 14px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .post-time-label {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-
+    .post-time-label { font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
     .post-expand-btn {
-      background: none; border: none; cursor: pointer;
-      color: var(--muted);
+      background: none; border: none; cursor: pointer; color: var(--muted);
       display: flex; align-items: center; gap: 5px;
       font-size: 12px; font-family: 'Jost', sans-serif;
       padding: 5px 10px; border-radius: 8px;
@@ -223,70 +154,43 @@
     }
     .post-expand-btn:hover { background: var(--gold-pale); color: var(--gold); }
 
-    /* ── GRID CARD ── */
     .grid-card {
-      position: relative;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: var(--cream-dark);
-      cursor: zoom-in;
+      position: relative; aspect-ratio: 1; overflow: hidden;
+      background: var(--cream-dark); cursor: zoom-in;
     }
-
-    .grid-card img,
-    .grid-card video {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+    .grid-card img, .grid-card video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.35s ease;
     }
-    .grid-card:hover img,
-    .grid-card:hover video { transform: scale(1.04); }
-
+    .grid-card:hover img, .grid-card:hover video { transform: scale(1.04); }
     .grid-card .grid-video-icon {
-      position: absolute;
-      top: 6px; right: 6px;
-      width: 22px; height: 22px;
-      background: rgba(26,24,20,0.55);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      position: absolute; top: 6px; right: 6px;
+      width: 22px; height: 22px; background: rgba(26,24,20,0.55);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
       backdrop-filter: blur(3px);
     }
 
-    /* ── SKELETON ── */
     .skeleton-card { background: var(--card-bg); border-bottom: 1px solid var(--border); padding-bottom: 14px; }
-    .sk { background: linear-gradient(90deg, #ede9e2 25%, #f5f1ea 50%, #ede9e2 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; }
+    .sk { background: linear-gradient(90deg,#ede9e2 25%,#f5f1ea 50%,#ede9e2 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; border-radius:4px; }
     @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-    .sk-media { height: 300px; border-radius: 0; }
-    .sk-line  { height: 10px; }
+    .sk-media { height:300px; border-radius:0; }
+    .sk-line  { height:10px; }
 
-    /* ── EMPTY / ERROR ── */
     #empty-state, #error-state {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 24px;
-      text-align: center;
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; padding: 80px 24px; text-align: center;
     }
     .empty-icon { font-size: 44px; margin-bottom: 14px; }
     .empty-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 26px; color: var(--charcoal);
-      margin-bottom: 8px;
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 26px; color: var(--charcoal); margin-bottom: 8px;
     }
     .empty-sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-    /* ── FAB ── */
     #fab {
-      position: fixed;
-      bottom: 28px; right: 22px;
-      z-index: 50;
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: var(--charcoal);
-      color: #fff;
-      border: none; cursor: pointer;
+      position: fixed; bottom: 28px; right: 22px; z-index: 50;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--charcoal); color: #fff; border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 6px 22px rgba(26,24,20,0.28), 0 1px 4px rgba(0,0,0,0.12);
       transition: transform 0.2s, background 0.2s;
@@ -294,183 +198,132 @@
     #fab:hover { background: var(--charcoal-mid); transform: scale(1.06); }
     #fab:active { transform: scale(0.92); }
     #fab::after {
-      content: '';
-      position: absolute; inset: -3px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold-light);
-      opacity: 0.45;
+      content:''; position:absolute; inset:-3px; border-radius:50%;
+      border:1.5px solid var(--gold-light); opacity:0.45;
     }
     #fab svg { transition: transform 0.25s ease; }
     #fab.open svg { transform: rotate(45deg); }
 
-    /* ── UPLOAD DRAWER ── */
-    #upload-drawer {
-      position: fixed; inset: 0;
-      z-index: 60;
-      pointer-events: none;
-    }
+    #upload-drawer { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
     #drawer-backdrop {
-      position: absolute; inset: 0;
-      background: rgba(26,24,20,0.58);
-      opacity: 0;
-      transition: opacity 0.28s ease;
+      position: absolute; inset: 0; background: rgba(26,24,20,0.58);
+      opacity: 0; transition: opacity 0.28s ease;
     }
     #drawer-panel {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: var(--cream);
-      border-radius: 22px 22px 0 0;
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: var(--cream); border-radius: 22px 22px 0 0;
       padding: 0 0 env(safe-area-inset-bottom, 20px);
       transform: translateY(100%);
-      transition: transform 0.36s cubic-bezier(0.32, 0.72, 0, 1);
-      max-height: 90dvh;
-      overflow-y: auto;
+      transition: transform 0.36s cubic-bezier(0.32,0.72,0,1);
+      max-height: 90dvh; overflow-y: auto;
     }
     #upload-drawer.open { pointer-events: all; }
     #upload-drawer.open #drawer-backdrop { opacity: 1; }
     #upload-drawer.open #drawer-panel { transform: translateY(0); }
-
     .drawer-handle {
-      width: 36px; height: 4px;
-      background: var(--muted-light);
-      border-radius: 2px;
-      margin: 14px auto 0;
+      width: 36px; height: 4px; background: var(--muted-light);
+      border-radius: 2px; margin: 14px auto 0;
     }
-
     .drawer-body { padding: 20px 20px 10px; }
-
     .drawer-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 28px; font-weight: 400;
-      color: var(--charcoal);
-      margin-bottom: 3px;
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 28px; font-weight: 400; color: var(--charcoal); margin-bottom: 3px;
     }
     .drawer-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
 
-    /* Drop zone */
     #drop-zone {
-      border: 1.5px dashed rgba(184,154,106,0.38);
-      border-radius: 14px;
-      padding: 28px 18px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      margin-bottom: 14px;
+      border: 1.5px dashed rgba(184,154,106,0.38); border-radius: 14px;
+      padding: 28px 18px; text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s; margin-bottom: 14px;
     }
     #drop-zone.drag-over { border-color: var(--gold); background: var(--gold-pale); }
     .dz-icon { font-size: 26px; margin-bottom: 10px; }
     .dz-label { font-size: 14px; font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
     .dz-hint { font-size: 12px; color: var(--muted); }
 
-    /* File list */
+    #caption-input {
+      width: 100%; border: 1px solid var(--border); border-radius: 12px;
+      padding: 10px 12px; font-family: 'Jost', sans-serif; font-size: 13px;
+      color: var(--charcoal); background: var(--card-bg);
+      margin-bottom: 12px; resize: none; outline: none;
+      transition: border-color 0.2s; line-height: 1.5;
+    }
+    #caption-input:focus { border-color: rgba(184,154,106,0.55); }
+    #caption-input::placeholder { color: var(--muted-light); }
+
     #file-list {
-      display: none;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 14px;
+      display: none; border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; margin-bottom: 14px;
     }
     .file-row {
       display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
+      padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 13px;
     }
     .file-row:last-child { border-bottom: none; }
-    .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--charcoal-mid); }
-    .file-size { font-size: 11px; color: var(--muted); flex-shrink: 0; }
+    .file-name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--charcoal-mid); }
+    .file-size { font-size:11px; color:var(--muted); flex-shrink:0; }
     .file-remove {
-      background: rgba(160,80,80,0.09); border: none; cursor: pointer;
-      color: #a05050; font-size: 11px; padding: 3px 7px;
-      border-radius: 6px; flex-shrink: 0;
+      background:rgba(160,80,80,0.09); border:none; cursor:pointer;
+      color:#a05050; font-size:11px; padding:3px 7px; border-radius:6px; flex-shrink:0;
     }
 
-    /* Progress */
     #upload-progress { display: none; margin-bottom: 14px; }
-    .prog-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 6px; }
-    .prog-track { height: 3px; background: var(--cream-dark); border-radius: 2px; overflow: hidden; }
-    .prog-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.15s; width: 0%; }
+    .prog-meta { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:6px; }
+    .prog-track { height:3px; background:var(--cream-dark); border-radius:2px; overflow:hidden; }
+    .prog-fill { height:100%; background:var(--gold); border-radius:2px; transition:width 0.15s; width:0%; }
 
-    /* CTA */
     #btn-upload {
-      width: 100%; padding: 14px;
-      border-radius: 14px;
-      border: none; cursor: pointer;
-      background: var(--charcoal);
-      color: #fff;
-      font-family: 'Jost', sans-serif;
-      font-size: 13.5px; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      transition: background 0.2s, transform 0.15s;
+      width:100%; padding:14px; border-radius:14px; border:none; cursor:pointer;
+      background:var(--charcoal); color:#fff; font-family:'Jost',sans-serif;
+      font-size:13.5px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
+      transition:background 0.2s, transform 0.15s;
     }
-    #btn-upload:hover { background: var(--charcoal-mid); }
-    #btn-upload:active { transform: scale(0.98); }
-    #btn-upload:disabled { opacity: 0.45; cursor: default; }
+    #btn-upload:hover { background:var(--charcoal-mid); }
+    #btn-upload:active { transform:scale(0.98); }
+    #btn-upload:disabled { opacity:0.45; cursor:default; }
+    .drawer-note { text-align:center; font-size:11.5px; color:var(--muted); margin-top:10px; margin-bottom:4px; }
 
-    .drawer-note { text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 10px; margin-bottom: 4px; }
-
-    /* ── LIGHTBOX ── */
     #lightbox {
-      position: fixed; inset: 0;
-      z-index: 70;
-      background: rgba(10,8,6,0.96);
-      display: none;
-      align-items: center; justify-content: center;
+      position:fixed; inset:0; z-index:70; background:rgba(10,8,6,0.96);
+      display:none; align-items:center; justify-content:center;
     }
-    #lightbox.active { display: flex; }
+    #lightbox.active { display:flex; }
     #lightbox-close {
-      position: absolute; top: 14px; right: 14px;
-      width: 38px; height: 38px; border-radius: 50%;
-      background: rgba(255,255,255,0.1); border: none;
-      color: #fff; font-size: 17px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
+      position:absolute; top:14px; right:14px; width:38px; height:38px;
+      border-radius:50%; background:rgba(255,255,255,0.1); border:none;
+      color:#fff; font-size:17px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; transition:background 0.2s;
     }
-    #lightbox-close:hover { background: rgba(255,255,255,0.2); }
+    #lightbox-close:hover { background:rgba(255,255,255,0.2); }
     #lightbox-content img, #lightbox-content video {
-      max-width: 96vw; max-height: 94dvh;
-      object-fit: contain; border-radius: 4px;
+      max-width:96vw; max-height:94dvh; object-fit:contain; border-radius:4px;
     }
 
-    /* ── TOAST ── */
     #toast-container {
-      position: fixed; bottom: 96px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 80;
-      display: flex; flex-direction: column; gap: 8px;
-      pointer-events: none;
+      position:fixed; bottom:96px; left:50%; transform:translateX(-50%);
+      z-index:80; display:flex; flex-direction:column; gap:8px; pointer-events:none;
     }
     .toast {
-      padding: 10px 20px; border-radius: 24px;
-      font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
-      opacity: 0; transform: translateY(8px);
-      transition: all 0.22s ease;
-      white-space: nowrap; text-align: center;
+      padding:10px 20px; border-radius:24px; font-size:13px; font-weight:500;
+      letter-spacing:0.01em; opacity:0; transform:translateY(8px);
+      transition:all 0.22s ease; white-space:nowrap; text-align:center;
     }
-    .toast.show { opacity: 1; transform: translateY(0); }
-    .toast.success { background: var(--charcoal); color: #fff; }
-    .toast.error   { background: #7a2828; color: #fff; }
+    .toast.show { opacity:1; transform:translateY(0); }
+    .toast.success { background:var(--charcoal); color:#fff; }
+    .toast.error   { background:#7a2828; color:#fff; }
 
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 2px; }
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--muted-light); border-radius:2px; }
 
-    /* ── Divider ── */
     .count-divider {
-      text-align: center;
-      font-size: 10.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 14px 0 8px;
+      text-align:center; font-size:10.5px; letter-spacing:0.1em;
+      text-transform:uppercase; color:var(--muted); padding:14px 0 8px;
     }
   </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <header class="site-header">
   <div class="header-inner">
     <div class="logo-block">
@@ -497,10 +350,7 @@
   </div>
 </header>
 
-<!-- ── FEED WRAP ── -->
 <div id="feed-wrap" class="mode-feed">
-
-  <!-- Skeletons -->
   <div id="skeleton-wrap">
     <div class="skeleton-card">
       <div class="sk sk-media"></div>
@@ -515,18 +365,12 @@
       </div>
     </div>
   </div>
-
-  <!-- Feed list (dual-mode: feed cards + grid cards both live here) -->
   <div id="feed-list"></div>
-
-  <!-- Empty -->
   <div id="empty-state">
     <div class="empty-icon">📷</div>
     <div class="empty-title">No photos yet</div>
     <div class="empty-sub">Be the first to share<br>this beautiful moment ✨</div>
   </div>
-
-  <!-- Error -->
   <div id="error-state">
     <div class="empty-icon">⚠️</div>
     <div class="empty-title" style="font-size:20px">Couldn't load</div>
@@ -535,14 +379,12 @@
   </div>
 </div>
 
-<!-- ── FAB ── -->
 <button id="fab" aria-label="Add photo" onclick="toggleDrawer()">
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
   </svg>
 </button>
 
-<!-- ── UPLOAD DRAWER ── -->
 <div id="upload-drawer">
   <div id="drawer-backdrop" onclick="toggleDrawer()"></div>
   <div id="drawer-panel">
@@ -550,29 +392,14 @@
     <div class="drawer-body">
       <div class="drawer-title">Share a moment</div>
       <div class="drawer-sub">Photos & videos · no account needed</div>
-
       <div id="drop-zone" onclick="document.getElementById('file-input').click()">
-
         <input id="file-input" type="file" accept="image/*,video/*" multiple style="display:none" onchange="handleFiles(this.files)" />
         <div class="dz-icon">📎</div>
         <div class="dz-label">Tap to choose photos or videos</div>
         <div class="dz-hint">or drag & drop · max 50 MB each</div>
       </div>
-        <textarea id="caption-input"
-  placeholder="Write a small message… (optional)"
-  style="
-    width:100%;
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:10px;
-    font-family:'Jost',sans-serif;
-    font-size:13px;
-    margin-bottom:12px;
-    resize:none;
-  "
-></textarea>
+      <textarea id="caption-input" rows="2" placeholder="Write a small message… (optional)"></textarea>
       <div id="file-list"></div>
-
       <div id="upload-progress">
         <div class="prog-meta">
           <span id="progress-label">Uploading…</span>
@@ -580,42 +407,26 @@
         </div>
         <div class="prog-track"><div id="progress-fill" class="prog-fill"></div></div>
       </div>
-
       <button id="btn-upload" onclick="startUpload()">Upload Photos</button>
       <div class="drawer-note">Your photos appear instantly in the live feed</div>
     </div>
   </div>
 </div>
 
-<!-- ── LIGHTBOX ── -->
 <div id="lightbox" onclick="closeLightbox()">
   <button id="lightbox-close" onclick="closeLightbox()">✕</button>
   <div id="lightbox-content" onclick="event.stopPropagation()"></div>
 </div>
 
-<!-- ── TOASTS ── -->
 <div id="toast-container"></div>
 
 <script>
-// ═══════════════════════════════════════
-// CONFIG
-// ═══════════════════════════════════════
-const CONFIG = {
-  REFETCH_MS: 15_000,
-  MAX_MB: 50,
-};
+const CONFIG = { REFETCH_MS: 15_000, MAX_MB: 50 };
 
-// ═══════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════
-let eventKey   = null;
-let knownItems = new Map();
-let viewMode   = 'feed'; // 'feed' | 'grid'
+let eventKey      = null;
+let knownItems    = new Map(); // key → { caption }
 let selectedFiles = [];
 
-// ═══════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   eventKey = new URLSearchParams(location.search).get('event');
   setupDragDrop();
@@ -623,11 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(() => loadFeed(false), CONFIG.REFETCH_MS);
 });
 
-// ═══════════════════════════════════════
-// VIEW TOGGLE
-// ═══════════════════════════════════════
 function setView(mode) {
-  viewMode = mode;
   const wrap = document.getElementById('feed-wrap');
   wrap.classList.toggle('mode-feed', mode === 'feed');
   wrap.classList.toggle('mode-grid', mode === 'grid');
@@ -636,10 +443,9 @@ function setView(mode) {
 }
 
 // ═══════════════════════════════════════
-// FEED
+// FEED LOADING
 // ═══════════════════════════════════════
 async function loadFeed(initial = false) {
-  
   const skeleton = document.getElementById('skeleton-wrap');
   const empty    = document.getElementById('empty-state');
   const error    = document.getElementById('error-state');
@@ -648,7 +454,7 @@ async function loadFeed(initial = false) {
   try {
     const res = await fetch(`/list?event=${encodeURIComponent(eventKey || '')}`);
     if (!res.ok) throw new Error('fetch failed');
-    const items = await res.json(); // [{key, url, contentType, uploaded}]
+    const items = await res.json();
 
     skeleton.style.display = 'none';
     empty.style.display    = 'none';
@@ -656,123 +462,167 @@ async function loadFeed(initial = false) {
 
     if (!items || items.length === 0) {
       empty.style.display = 'flex';
+      knownItems.clear();
+      list.innerHTML = '';
       return;
     }
 
-    // Newest first
     items.sort((a, b) => new Date(b.uploaded) - new Date(a.uploaded));
 
- const newItems = items.filter(it => {
-  const prev = knownItems.get(it.key);
-  return !prev || prev.caption !== it.caption;
-});
-if (!newItems.length && !initial) return;
-newItems.forEach(item => {
-  knownItems.set(item.key, item);
-  list.querySelectorAll(`[data-key="${item.key}"]`)
-    .forEach(el => el.remove());
+    if (initial) {
+      // ── Full render on first load ──────────────────────────────────────
+      list.innerHTML = '';
+      knownItems.clear();
+      items.forEach(item => {
+        knownItems.set(item.key, { caption: item.caption ?? '' });
+        const { feedCard, gridCard } = buildCards(item);
+        list.appendChild(feedCard);
+        list.appendChild(gridCard);
+      });
+    } else {
+      // ── Incremental: only process changed/new items ────────────────────
+      const toRender = items.filter(item => {
+        const prev = knownItems.get(item.key);
+        if (!prev) return true;                               // new item
+        if (prev.caption !== (item.caption ?? '')) return true; // caption updated
+        return false;
+      });
 
-  const { feedCard, gridCard } = buildCards(item);
+      if (!toRender.length) return;
 
-  if (initial) {
-    list.appendChild(feedCard);
-    list.appendChild(gridCard);
-  } else {
-    list.insertBefore(feedCard, list.firstChild);
-    list.insertBefore(gridCard, list.firstChild);
-  }
-});
+      toRender.forEach(item => {
+        const isNew = !knownItems.has(item.key);
+        knownItems.set(item.key, { caption: item.caption ?? '' });
 
-    // Photo count label (only after initial load)
-   let lbl = document.getElementById('photo-count');
+        // Remove stale DOM nodes for this key
+        list.querySelectorAll(`[data-key="${CSS.escape(item.key)}"]`).forEach(el => el.remove());
 
-if (!lbl) {
-  lbl = document.createElement('div');
-  lbl.id = 'photo-count';
-  lbl.className = 'count-divider';
-  list.appendChild(lbl);
-}
+        const { feedCard, gridCard } = buildCards(item);
 
-lbl.textContent = `${items.length} photo${items.length !== 1 ? 's' : ''} shared`;
+        if (isNew) {
+          list.insertBefore(gridCard, list.firstChild);
+          list.insertBefore(feedCard, list.firstChild);
+        } else {
+          // Re-append updated cards (they'll appear at end, which is fine for caption edits)
+          list.appendChild(feedCard);
+          list.appendChild(gridCard);
+        }
+      });
+    }
+
+    // Update / create photo count label
+    let lbl = document.getElementById('photo-count');
+    if (!lbl) {
+      lbl = document.createElement('div');
+      lbl.id = 'photo-count';
+      lbl.className = 'count-divider';
+      list.appendChild(lbl);
+    }
+    lbl.textContent = `${items.length} photo${items.length !== 1 ? 's' : ''} shared`;
 
   } catch(e) {
+    console.error(e);
     skeleton.style.display = 'none';
-    if (knownItems.size === 0) {
-      error.style.display = 'flex';
-    }
+    if (knownItems.size === 0) error.style.display = 'flex';
   }
 }
-function escapeHtml(str) {
-  return (str || '')
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
+
 // ═══════════════════════════════════════
-// BUILD CARDS
+// BUILD CARDS — DOM-based, no innerHTML for user content
 // ═══════════════════════════════════════
 function buildCards(item) {
-  const isVideo = item.contentType?.startsWith('video/');
-  const timeAgo = formatTime(item.uploaded);
+  const isVideo  = item.contentType?.startsWith('video/');
+  const caption  = (item.caption ?? '').trim();
+  const mediaUrl = item.url;
 
-  // ── Feed card ──
+  // ── FEED CARD ────────────────────────────────────────────────────
   const feedCard = document.createElement('div');
   feedCard.className = 'post-card';
   feedCard.dataset.key = item.key;
 
-  const mediaHtml = isVideo
-    ? `<video src="${item.url}" muted playsinline preload="metadata" loop
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-       <span class="video-badge">▶ VIDEO</span>`
-    : `<img src="${item.url}" loading="lazy" alt="Wedding photo" decoding="async" />`;
+  // Media
+  const mediaDiv = document.createElement('div');
+  mediaDiv.className = 'post-media';
+  mediaDiv.addEventListener('click', () => openLightbox(mediaUrl, isVideo));
 
-  feedCard.innerHTML = `
-    <div class="post-media" onclick="openLightbox('${escAttr(item.url)}', ${isVideo})">
-      ${mediaHtml}
-    </div>
+  if (isVideo) {
+    const video = document.createElement('video');
+    video.src = mediaUrl;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+    video.loop = true;
+    video.addEventListener('mouseenter', () => video.play());
+    video.addEventListener('mouseleave', () => video.pause());
+    const badge = document.createElement('span');
+    badge.className = 'video-badge';
+    badge.textContent = '▶ VIDEO';
+    mediaDiv.appendChild(video);
+    mediaDiv.appendChild(badge);
+  } else {
+    const img = document.createElement('img');
+    img.src = mediaUrl;
+    img.loading = 'lazy';
+    img.alt = 'Wedding photo';
+    img.decoding = 'async';
+    mediaDiv.appendChild(img);
+  }
+  feedCard.appendChild(mediaDiv);
 
-${item.caption ? `
-  <div style="
-    padding:10px 14px 0;
-    font-size:13px;
-    color:var(--charcoal-mid);
-    line-height:1.5;
-  ">
-    ${escapeHtml(item.caption)}
-  </div>
-` : ''}
+  // Caption — only rendered when non-empty; textContent = XSS-safe
+  if (caption) {
+    const captionEl = document.createElement('div');
+    captionEl.className = 'post-caption';
+    captionEl.textContent = caption;
+    feedCard.appendChild(captionEl);
+  }
 
-<div class="post-footer">
-      <span class="post-time-label">${timeAgo}</span>
-      <button class="post-expand-btn" onclick="openLightbox('${escAttr(item.url)}', ${isVideo})">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-        View
-      </button>
-    </div>
-  `;
+  // Footer
+  const footer = document.createElement('div');
+  footer.className = 'post-footer';
 
-  // ── Grid card ──
+  const timeEl = document.createElement('span');
+  timeEl.className = 'post-time-label';
+  timeEl.textContent = formatTime(item.uploaded);
+
+  const expandBtn = document.createElement('button');
+  expandBtn.className = 'post-expand-btn';
+  expandBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg> View`;
+  expandBtn.addEventListener('click', () => openLightbox(mediaUrl, isVideo));
+
+  footer.appendChild(timeEl);
+  footer.appendChild(expandBtn);
+  feedCard.appendChild(footer);
+
+  // ── GRID CARD ────────────────────────────────────────────────────
   const gridCard = document.createElement('div');
   gridCard.className = 'grid-card';
   gridCard.dataset.key = item.key;
 
   if (isVideo) {
-    gridCard.innerHTML = `
-      <video src="${escAttr(item.url)}" muted playsinline preload="metadata"></video>
-      <div class="grid-video-icon">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </div>
-    `;
+    const video = document.createElement('video');
+    video.src = mediaUrl;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+    gridCard.appendChild(video);
+    const icon = document.createElement('div');
+    icon.className = 'grid-video-icon';
+    icon.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+    gridCard.appendChild(icon);
   } else {
-    gridCard.innerHTML = `<img src="${escAttr(item.url)}" loading="lazy" alt="Wedding photo" decoding="async" />`;
+    const img = document.createElement('img');
+    img.src = mediaUrl;
+    img.loading = 'lazy';
+    img.alt = 'Wedding photo';
+    img.decoding = 'async';
+    gridCard.appendChild(img);
   }
-
-  gridCard.addEventListener('click', () => openLightbox(escAttr(item.url), isVideo));
+  gridCard.addEventListener('click', () => openLightbox(mediaUrl, isVideo));
 
   return { feedCard, gridCard };
 }
 
-  
 // ═══════════════════════════════════════
 // HELPERS
 // ═══════════════════════════════════════
@@ -785,12 +635,12 @@ function formatTime(iso) {
   return `${Math.floor(diff / 86400)}d ago`;
 }
 
-function escAttr(str) {
-  return (str || '').replace(/'/g, "\\'");
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 // ═══════════════════════════════════════
-// DRAWER
+// DRAWER / UPLOAD
 // ═══════════════════════════════════════
 function toggleDrawer() {
   const drawer = document.getElementById('upload-drawer');
@@ -801,9 +651,6 @@ function toggleDrawer() {
   if (!open) resetUpload();
 }
 
-// ═══════════════════════════════════════
-// FILES
-// ═══════════════════════════════════════
 function handleFiles(fileList) {
   const maxB = CONFIG.MAX_MB * 1024 * 1024;
   const over = [];
@@ -827,42 +674,35 @@ function renderFileList() {
   list.innerHTML = selectedFiles.map((f, i) => `
     <div class="file-row">
       <span>${f.type.startsWith('video/') ? '▶' : '📷'}</span>
-      <span class="file-name">${f.name}</span>
-      <span class="file-size">${(f.size / 1024 / 1024).toFixed(1)} MB</span>
+      <span class="file-name">${escHtml(f.name)}</span>
+      <span class="file-size">${(f.size/1024/1024).toFixed(1)} MB</span>
       <button class="file-remove" onclick="removeFile(${i})">✕</button>
-    </div>
-  `).join('');
+    </div>`).join('');
   btn.textContent = `Upload ${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''}`;
 }
 
-function removeFile(i) {
-  selectedFiles.splice(i, 1);
-  renderFileList();
-}
+function removeFile(i) { selectedFiles.splice(i, 1); renderFileList(); }
 
-// ═══════════════════════════════════════
-// UPLOAD
-// ═══════════════════════════════════════
 async function startUpload() {
   if (!selectedFiles.length) { document.getElementById('file-input').click(); return; }
   if (!eventKey) { showToast('Add ?event=KEY to the URL', 'error'); return; }
 
-  const btn  = document.getElementById('btn-upload');
-  const prog = document.getElementById('upload-progress');
-  const fill = document.getElementById('progress-fill');
-  const pct  = document.getElementById('progress-pct');
-  const lbl  = document.getElementById('progress-label');
+  const btn     = document.getElementById('btn-upload');
+  const prog    = document.getElementById('upload-progress');
+  const fill    = document.getElementById('progress-fill');
+  const pct     = document.getElementById('progress-pct');
+  const lbl     = document.getElementById('progress-label');
+  const caption = document.getElementById('caption-input').value.trim().slice(0, 200);
 
   btn.disabled = true;
   prog.style.display = 'block';
-
   let done = 0;
+
   for (const file of selectedFiles) {
     lbl.textContent = `Uploading ${file.name}…`;
     const fd = new FormData();
     fd.append('file', file);
     fd.append('event', eventKey);
-    const caption = document.getElementById('caption-input').value.trim().slice(0, 200);
     fd.append('caption', caption);
     try {
       const res = await fetch(`/upload?event=${encodeURIComponent(eventKey)}`, { method: 'POST', body: fd });
@@ -875,9 +715,7 @@ async function startUpload() {
       const p = Math.round((done / selectedFiles.length) * 100);
       fill.style.width = p + '%';
       pct.textContent  = p + '%';
-    } catch (e) {
-      showToast(`Error: ${e.message}`, 'error');
-    }
+    } catch (e) { showToast(`Error: ${e.message}`, 'error'); }
   }
 
   if (done > 0) showToast(`${done} photo${done > 1 ? 's' : ''} shared! 🎉`, 'success');
@@ -894,26 +732,20 @@ function resetUpload() {
   renderFileList();
   document.getElementById('upload-progress').style.display = 'none';
   document.getElementById('progress-fill').style.width = '0%';
-  document.getElementById('caption-input').value = "";
+  document.getElementById('caption-input').value = '';
   const btn = document.getElementById('btn-upload');
   btn.disabled = false;
   btn.textContent = 'Upload Photos';
   document.getElementById('file-input').value = '';
 }
 
-// ═══════════════════════════════════════
-// DRAG & DROP
-// ═══════════════════════════════════════
 function setupDragDrop() {
   const dz = document.getElementById('drop-zone');
-  ['dragenter', 'dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag-over'); }));
-  ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag-over'); }));
+  ['dragenter','dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag-over'); }));
+  ['dragleave','drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag-over'); }));
   dz.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
 }
 
-// ═══════════════════════════════════════
-// LIGHTBOX
-// ═══════════════════════════════════════
 function openLightbox(url, isVideo) {
   const box = document.getElementById('lightbox');
   const cnt = document.getElementById('lightbox-content');
@@ -935,9 +767,6 @@ function closeLightbox() {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-// ═══════════════════════════════════════
-// TOAST
-// ═══════════════════════════════════════
 function showToast(msg, type = 'success') {
   const c = document.getElementById('toast-container');
   const t = document.createElement('div');
