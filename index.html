@@ -12,16 +12,15 @@
     :root {
       --gold: #b89a6a;
       --gold-light: #d4b896;
-      --gold-pale: rgba(184,154,106,0.12);
+      --gold-pale: rgba(184,154,106,0.10);
       --cream: #faf7f2;
-      --cream-dark: #f3ede4;
+      --cream-dark: #f0e9df;
       --charcoal: #1a1814;
       --charcoal-mid: #3a3630;
       --muted: #8c8178;
       --muted-light: #bfb8ae;
       --border: rgba(184,154,106,0.18);
       --card-bg: #ffffff;
-      --shadow: 0 2px 24px rgba(26,24,20,0.07);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
@@ -39,9 +38,9 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(250,247,242,0.9);
-      backdrop-filter: saturate(160%) blur(16px);
-      -webkit-backdrop-filter: saturate(160%) blur(16px);
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: saturate(160%) blur(18px);
+      -webkit-backdrop-filter: saturate(160%) blur(18px);
       border-bottom: 1px solid var(--border);
     }
 
@@ -49,19 +48,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
-      max-width: 600px;
+      padding: 11px 18px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
     .logo-block { display: flex; align-items: center; gap: 10px; }
 
     .logo-ring {
-      width: 36px; height: 36px;
+      width: 34px; height: 34px;
       border-radius: 50%;
       border: 1.5px solid var(--gold);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     .logo-text {
@@ -70,23 +69,23 @@
       font-weight: 400;
       font-size: 18px;
       letter-spacing: 0.03em;
-      line-height: 1.2;
+      line-height: 1.15;
       color: var(--charcoal);
     }
     .logo-sub {
       font-family: 'Jost', sans-serif;
       font-weight: 400;
-      font-size: 10px;
+      font-size: 9.5px;
       letter-spacing: 0.12em;
       color: var(--muted);
       text-transform: uppercase;
     }
 
-    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .header-actions { display: flex; align-items: center; gap: 6px; }
 
     #live-dot {
       display: flex; align-items: center; gap: 5px;
-      font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+      font-size: 9.5px; font-weight: 500; letter-spacing: 0.08em;
       text-transform: uppercase; color: var(--gold);
     }
     #live-dot::before {
@@ -98,11 +97,11 @@
     }
     @keyframes pulse-live {
       0%,100% { opacity:1; transform: scale(1); }
-      50% { opacity:0.4; transform: scale(0.75); }
+      50% { opacity:0.35; transform: scale(0.7); }
     }
 
     .btn-icon {
-      width: 34px; height: 34px;
+      width: 32px; height: 32px;
       border-radius: 50%;
       border: 1px solid var(--border);
       background: transparent;
@@ -112,128 +111,63 @@
       transition: background 0.2s, color 0.2s;
     }
     .btn-icon:hover { background: var(--gold-pale); color: var(--gold); }
+    .btn-icon.active { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
 
-    /* ── STORIES ROW ── */
-    .stories-row {
-      border-bottom: 1px solid var(--border);
-      background: var(--cream);
-    }
-    .stories-inner {
+    /* ── VIEW TOGGLE ── */
+    .view-toggle {
       display: flex;
-      gap: 16px;
-      padding: 14px 16px;
-      overflow-x: auto;
-      max-width: 600px;
-      margin: 0 auto;
-      scrollbar-width: none;
-    }
-    .stories-inner::-webkit-scrollbar { display: none; }
-
-    .story-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .story-ring {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      padding: 2px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light), #e8d5b5);
-      position: relative;
-    }
-
-    .story-ring.seen {
-      background: #ddd8d0;
-    }
-
-    .story-avatar {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      border: 2px solid var(--cream);
-      object-fit: cover;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
       background: var(--cream-dark);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      overflow: hidden;
     }
-
-    .story-label {
-      font-size: 10px;
-      font-weight: 400;
-      color: var(--charcoal);
-      letter-spacing: 0.02em;
-      text-align: center;
-      max-width: 60px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .view-btn {
+      padding: 6px 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: var(--muted);
+      display: flex; align-items: center;
+      transition: background 0.18s, color 0.18s;
     }
+    .view-btn.active { background: var(--charcoal); color: #fff; }
+    .view-btn:first-child { border-radius: 7px 0 0 7px; }
+    .view-btn:last-child  { border-radius: 0 7px 7px 0; }
 
     /* ── FEED ── */
-    #feed {
-      max-width: 600px;
+    #feed-wrap {
+      max-width: 680px;
       margin: 0 auto;
-      padding-bottom: 100px;
+      padding-bottom: 110px;
     }
 
-    /* ── POST CARD ── */
+    /* Feed mode */
+    #feed-wrap.mode-feed .post-card { display: block; }
+    #feed-wrap.mode-feed .grid-card { display: none; }
+
+    /* Grid mode */
+    #feed-wrap.mode-grid #feed-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      padding: 2px;
+    }
+    #feed-wrap.mode-grid .post-card { display: none; }
+    #feed-wrap.mode-grid .grid-card { display: block; }
+
+    /* ── POST CARD (feed) ── */
     .post-card {
       background: var(--card-bg);
       border-bottom: 1px solid var(--border);
-      animation: fade-up 0.45s ease forwards;
+      animation: fade-up 0.4s ease forwards;
     }
 
     @keyframes fade-up {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .post-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 14px;
-    }
-
-    .post-avatar {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--cream-dark);
-      border: 1.5px solid var(--gold-light);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px;
-      flex-shrink: 0;
-      overflow: hidden;
-      object-fit: cover;
-    }
-
-    .post-meta { flex: 1; min-width: 0; }
-    .post-author {
-      font-weight: 500;
-      font-size: 13.5px;
-      letter-spacing: 0.01em;
-      color: var(--charcoal);
-    }
-    .post-time {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-    }
-
-    .post-more {
-      background: none; border: none; cursor: pointer;
-      color: var(--muted);
-      padding: 4px;
-      border-radius: 4px;
-      transition: color 0.2s;
-    }
-    .post-more:hover { color: var(--charcoal); }
-
-    /* ── Media ── */
     .post-media {
       position: relative;
       background: var(--cream-dark);
@@ -244,21 +178,19 @@
     .post-media img,
     .post-media video {
       width: 100%;
-      max-height: 600px;
+      max-height: 580px;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.45s ease;
     }
 
     .post-media:hover img,
-    .post-media:hover video {
-      transform: scale(1.02);
-    }
+    .post-media:hover video { transform: scale(1.015); }
 
-    .post-media .video-badge {
+    .video-badge {
       position: absolute;
       top: 10px; right: 10px;
-      background: rgba(26,24,20,0.6);
+      background: rgba(26,24,20,0.58);
       color: #fff;
       font-size: 10px;
       font-weight: 500;
@@ -268,92 +200,66 @@
       backdrop-filter: blur(4px);
     }
 
-    /* Double-tap heart */
-    .heart-burst {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      font-size: 80px;
-      pointer-events: none;
-      opacity: 0;
-      transition: none;
-    }
-    .heart-burst.pop {
-      animation: heart-pop 0.65s ease forwards;
-    }
-    @keyframes heart-pop {
-      0%   { opacity: 1; transform: translate(-50%,-50%) scale(0); }
-      40%  { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
-      70%  { opacity: 0.8; transform: translate(-50%,-50%) scale(1); }
-      100% { opacity: 0; transform: translate(-50%,-50%) scale(0.8); }
-    }
-
-    /* ── Post Actions ── */
-    .post-actions {
+    .post-footer {
+      padding: 10px 14px 14px;
       display: flex;
       align-items: center;
-      gap: 4px;
-      padding: 10px 14px 6px;
+      justify-content: space-between;
     }
 
-    .action-btn {
-      background: none; border: none; cursor: pointer;
-      display: flex; align-items: center; gap: 5px;
-      padding: 6px 8px;
-      border-radius: 8px;
-      font-family: 'Jost', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
+    .post-time-label {
+      font-size: 11px;
       color: var(--muted);
-      transition: color 0.2s, background 0.15s, transform 0.15s;
-      letter-spacing: 0.01em;
-    }
-    .action-btn:hover { color: var(--charcoal); background: var(--gold-pale); }
-    .action-btn:active { transform: scale(0.92); }
-    .action-btn.liked { color: #e05959; }
-    .action-btn.liked svg { fill: #e05959; stroke: #e05959; }
-    .action-btn svg { transition: transform 0.2s; }
-    .action-btn:hover svg { transform: scale(1.1); }
-
-    .action-spacer { flex: 1; }
-
-    /* Like count */
-    .post-likes {
-      padding: 0 14px 4px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--charcoal);
-      letter-spacing: 0.01em;
+      letter-spacing: 0.04em;
     }
 
-    /* Caption / tag */
-    .post-caption {
-      padding: 2px 14px 12px;
-      font-size: 13px;
-      color: var(--charcoal-mid);
-      line-height: 1.55;
-      letter-spacing: 0.01em;
+    .post-expand-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; font-family: 'Jost', sans-serif;
+      padding: 5px 10px; border-radius: 8px;
+      transition: background 0.18s, color 0.18s;
     }
-    .post-caption em {
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      color: var(--charcoal);
+    .post-expand-btn:hover { background: var(--gold-pale); color: var(--gold); }
+
+    /* ── GRID CARD ── */
+    .grid-card {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--cream-dark);
+      cursor: zoom-in;
     }
 
-    /* ── Skeleton cards ── */
-    .skeleton-card {
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
+    .grid-card img,
+    .grid-card video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
     }
-    .sk { background: linear-gradient(90deg, #ede9e2 25%, #f5f1ea 50%, #ede9e2 75%); background-size: 200% 100%; animation: shimmer 1.6s infinite; border-radius: 4px; }
+    .grid-card:hover img,
+    .grid-card:hover video { transform: scale(1.04); }
+
+    .grid-card .grid-video-icon {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 22px; height: 22px;
+      background: rgba(26,24,20,0.55);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+
+    /* ── SKELETON ── */
+    .skeleton-card { background: var(--card-bg); border-bottom: 1px solid var(--border); padding-bottom: 14px; }
+    .sk { background: linear-gradient(90deg, #ede9e2 25%, #f5f1ea 50%, #ede9e2 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; }
     @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-    .sk-avatar { width:36px;height:36px;border-radius:50%; }
-    .sk-line { height:10px; }
-    .sk-media { height:320px; }
+    .sk-media { height: 300px; border-radius: 0; }
+    .sk-line  { height: 10px; }
 
-    /* ── Empty / Error ── */
+    /* ── EMPTY / ERROR ── */
     #empty-state, #error-state {
       display: none;
       flex-direction: column;
@@ -362,44 +268,40 @@
       padding: 80px 24px;
       text-align: center;
     }
-    .empty-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-icon { font-size: 44px; margin-bottom: 14px; }
     .empty-title {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 26px;
-      color: var(--charcoal);
+      font-size: 26px; color: var(--charcoal);
       margin-bottom: 8px;
     }
-    .empty-sub { font-size: 14px; color: var(--muted); }
+    .empty-sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
     /* ── FAB ── */
     #fab {
       position: fixed;
-      bottom: 28px; right: 24px;
+      bottom: 28px; right: 22px;
       z-index: 50;
-      width: 58px; height: 58px;
+      width: 56px; height: 56px;
       border-radius: 50%;
       background: var(--charcoal);
       color: #fff;
       border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 24px rgba(26,24,20,0.28), 0 1px 4px rgba(0,0,0,0.14);
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      box-shadow: 0 6px 22px rgba(26,24,20,0.28), 0 1px 4px rgba(0,0,0,0.12);
+      transition: transform 0.2s, background 0.2s;
     }
     #fab:hover { background: var(--charcoal-mid); transform: scale(1.06); }
-    #fab:active { transform: scale(0.93); }
-    #fab svg { transition: transform 0.25s ease; }
-    #fab.open svg { transform: rotate(45deg); }
-
-    /* Gold ring on FAB */
+    #fab:active { transform: scale(0.92); }
     #fab::after {
       content: '';
-      position: absolute;
-      inset: -3px;
+      position: absolute; inset: -3px;
       border-radius: 50%;
       border: 1.5px solid var(--gold-light);
-      opacity: 0.5;
+      opacity: 0.45;
     }
+    #fab svg { transition: transform 0.25s ease; }
+    #fab.open svg { transform: rotate(45deg); }
 
     /* ── UPLOAD DRAWER ── */
     #upload-drawer {
@@ -409,9 +311,9 @@
     }
     #drawer-backdrop {
       position: absolute; inset: 0;
-      background: rgba(26,24,20,0.6);
+      background: rgba(26,24,20,0.58);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.28s ease;
     }
     #drawer-panel {
       position: absolute;
@@ -420,8 +322,8 @@
       border-radius: 22px 22px 0 0;
       padding: 0 0 env(safe-area-inset-bottom, 20px);
       transform: translateY(100%);
-      transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
-      max-height: 92dvh;
+      transition: transform 0.36s cubic-bezier(0.32, 0.72, 0, 1);
+      max-height: 90dvh;
       overflow-y: auto;
     }
     #upload-drawer.open { pointer-events: all; }
@@ -429,36 +331,35 @@
     #upload-drawer.open #drawer-panel { transform: translateY(0); }
 
     .drawer-handle {
-      width: 38px; height: 4px;
+      width: 36px; height: 4px;
       background: var(--muted-light);
       border-radius: 2px;
       margin: 14px auto 0;
     }
 
-    .drawer-body { padding: 20px 20px 12px; }
+    .drawer-body { padding: 20px 20px 10px; }
 
     .drawer-title {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 28px;
-      font-weight: 400;
+      font-size: 28px; font-weight: 400;
       color: var(--charcoal);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
-    .drawer-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .drawer-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
 
     /* Drop zone */
     #drop-zone {
-      border: 1.5px dashed rgba(184,154,106,0.4);
+      border: 1.5px dashed rgba(184,154,106,0.38);
       border-radius: 14px;
-      padding: 28px 20px;
+      padding: 28px 18px;
       text-align: center;
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
       margin-bottom: 14px;
     }
     #drop-zone.drag-over { border-color: var(--gold); background: var(--gold-pale); }
-    .dz-icon { font-size: 28px; margin-bottom: 10px; }
+    .dz-icon { font-size: 26px; margin-bottom: 10px; }
     .dz-label { font-size: 14px; font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
     .dz-hint { font-size: 12px; color: var(--muted); }
 
@@ -477,9 +378,13 @@
       font-size: 13px;
     }
     .file-row:last-child { border-bottom: none; }
-    .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--charcoal-mid); }
     .file-size { font-size: 11px; color: var(--muted); flex-shrink: 0; }
-    .file-remove { background: none; border: none; cursor: pointer; color: #a05050; font-size: 12px; padding: 2px 6px; border-radius: 6px; background: rgba(160,80,80,0.08); }
+    .file-remove {
+      background: rgba(160,80,80,0.09); border: none; cursor: pointer;
+      color: #a05050; font-size: 11px; padding: 3px 7px;
+      border-radius: 6px; flex-shrink: 0;
+    }
 
     /* Progress */
     #upload-progress { display: none; margin-bottom: 14px; }
@@ -487,54 +392,50 @@
     .prog-track { height: 3px; background: var(--cream-dark); border-radius: 2px; overflow: hidden; }
     .prog-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.15s; width: 0%; }
 
-    /* Upload CTA */
+    /* CTA */
     #btn-upload {
-      width: 100%; padding: 15px;
+      width: 100%; padding: 14px;
       border-radius: 14px;
       border: none; cursor: pointer;
       background: var(--charcoal);
       color: #fff;
       font-family: 'Jost', sans-serif;
-      font-size: 14px; font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 13.5px; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
       transition: background 0.2s, transform 0.15s;
     }
     #btn-upload:hover { background: var(--charcoal-mid); }
     #btn-upload:active { transform: scale(0.98); }
-    #btn-upload:disabled { opacity: 0.5; cursor: default; }
+    #btn-upload:disabled { opacity: 0.45; cursor: default; }
 
-    .drawer-note {
-      text-align: center; font-size: 12px; color: var(--muted);
-      margin-top: 10px; margin-bottom: 4px;
-    }
+    .drawer-note { text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 10px; margin-bottom: 4px; }
 
     /* ── LIGHTBOX ── */
     #lightbox {
       position: fixed; inset: 0;
       z-index: 70;
-      background: rgba(15,12,10,0.96);
+      background: rgba(10,8,6,0.96);
       display: none;
       align-items: center; justify-content: center;
     }
     #lightbox.active { display: flex; }
     #lightbox-close {
-      position: absolute; top: 16px; right: 16px;
-      width: 40px; height: 40px; border-radius: 50%;
+      position: absolute; top: 14px; right: 14px;
+      width: 38px; height: 38px; border-radius: 50%;
       background: rgba(255,255,255,0.1); border: none;
-      color: #fff; font-size: 18px; cursor: pointer;
+      color: #fff; font-size: 17px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.2s;
     }
     #lightbox-close:hover { background: rgba(255,255,255,0.2); }
     #lightbox-content img, #lightbox-content video {
-      max-width: 95vw; max-height: 94dvh;
+      max-width: 96vw; max-height: 94dvh;
       object-fit: contain; border-radius: 4px;
     }
 
     /* ── TOAST ── */
     #toast-container {
-      position: fixed; bottom: 100px; left: 50%;
+      position: fixed; bottom: 96px; left: 50%;
       transform: translateX(-50%);
       z-index: 80;
       display: flex; flex-direction: column; gap: 8px;
@@ -544,39 +445,27 @@
       padding: 10px 20px; border-radius: 24px;
       font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
       opacity: 0; transform: translateY(8px);
-      transition: all 0.25s ease;
+      transition: all 0.22s ease;
       white-space: nowrap; text-align: center;
     }
     .toast.show { opacity: 1; transform: translateY(0); }
     .toast.success { background: var(--charcoal); color: #fff; }
-    .toast.error { background: #7a2828; color: #fff; }
+    .toast.error   { background: #7a2828; color: #fff; }
 
     /* ── Scrollbar ── */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 2px; }
 
-    /* ── Divider with date ── */
-    .date-divider {
-      display: flex; align-items: center; gap: 12px;
-      padding: 16px 20px 10px;
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
+    /* ── Divider ── */
+    .count-divider {
+      text-align: center;
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--muted);
+      padding: 14px 0 8px;
     }
-    .date-divider::before, .date-divider::after {
-      content: ''; flex: 1;
-      height: 1px; background: var(--border);
-    }
-
-    /* ── Key badge ── */
-    .key-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 10px; padding: 3px 8px; border-radius: 99px;
-      letter-spacing: 0.04em; font-weight: 500; text-transform: uppercase;
-    }
-    .key-badge.valid { background: rgba(80,140,80,0.12); color: #3a7a3a; }
-    .key-badge.neutral { background: var(--gold-pale); color: var(--gold); }
   </style>
 </head>
 <body>
@@ -593,91 +482,48 @@
     </div>
     <div class="header-actions">
       <div id="live-dot">Live</div>
-      <span id="key-status" class="key-badge neutral">No key</span>
-      <button class="btn-icon" onclick="loadFeed(true)" title="Refresh">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btn-feed" onclick="setView('feed')" title="Feed">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="5" rx="1"/><rect x="3" y="10" width="18" height="5" rx="1"/><rect x="3" y="17" width="18" height="5" rx="1"/></svg>
+        </button>
+        <button class="view-btn" id="btn-grid" onclick="setView('grid')" title="Grid">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </button>
+      </div>
+      <button class="btn-icon" onclick="loadFeed(false)" title="Refresh">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<!-- ── STORIES ROW ── -->
-<div class="stories-row" id="stories-section">
-  <div class="stories-inner" id="stories-track">
-    <!-- Populated dynamically + static placeholders -->
-    <div class="story-item">
-      <div class="story-ring">
-        <div class="story-avatar" style="font-size:22px">👰</div>
-      </div>
-      <span class="story-label">Margarida</span>
-    </div>
-    <div class="story-item">
-      <div class="story-ring">
-        <div class="story-avatar" style="font-size:22px">🤵</div>
-      </div>
-      <span class="story-label">Ricardo</span>
-    </div>
-    <div class="story-item">
-      <div class="story-ring seen">
-        <div class="story-avatar" style="font-size:22px">📸</div>
-      </div>
-      <span class="story-label">Moments</span>
-    </div>
-    <div class="story-item">
-      <div class="story-ring seen">
-        <div class="story-avatar" style="font-size:22px">💐</div>
-      </div>
-      <span class="story-label">Ceremony</span>
-    </div>
-    <div class="story-item">
-      <div class="story-ring seen">
-        <div class="story-avatar" style="font-size:22px">🥂</div>
-      </div>
-      <span class="story-label">Cocktail</span>
-    </div>
-  </div>
-</div>
+<!-- ── FEED WRAP ── -->
+<div id="feed-wrap" class="mode-feed">
 
-<!-- ── FEED ── -->
-<div id="feed">
-
-  <!-- Skeleton placeholders -->
+  <!-- Skeletons -->
   <div id="skeleton-wrap">
     <div class="skeleton-card">
-      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px">
-        <div class="sk sk-avatar"></div>
-        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
-          <div class="sk sk-line" style="width:38%"></div>
-          <div class="sk sk-line" style="width:22%"></div>
-        </div>
-      </div>
       <div class="sk sk-media"></div>
       <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
-        <div class="sk sk-line" style="width:20%"></div>
-        <div class="sk sk-line" style="width:55%"></div>
+        <div class="sk sk-line" style="width:22%"></div>
       </div>
     </div>
     <div class="skeleton-card">
-      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px">
-        <div class="sk sk-avatar"></div>
-        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
-          <div class="sk sk-line" style="width:30%"></div>
-          <div class="sk sk-line" style="width:18%"></div>
-        </div>
-      </div>
-      <div class="sk sk-media" style="height:260px"></div>
+      <div class="sk sk-media" style="height:240px"></div>
       <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
-        <div class="sk sk-line" style="width:15%"></div>
-        <div class="sk sk-line" style="width:42%"></div>
+        <div class="sk sk-line" style="width:18%"></div>
       </div>
     </div>
   </div>
+
+  <!-- Feed list (dual-mode: feed cards + grid cards both live here) -->
+  <div id="feed-list"></div>
 
   <!-- Empty -->
   <div id="empty-state">
     <div class="empty-icon">📷</div>
     <div class="empty-title">No photos yet</div>
-    <div class="empty-sub">Be the first to share this beautiful moment ✨</div>
+    <div class="empty-sub">Be the first to share<br>this beautiful moment ✨</div>
   </div>
 
   <!-- Error -->
@@ -685,13 +531,13 @@
     <div class="empty-icon">⚠️</div>
     <div class="empty-title" style="font-size:20px">Couldn't load</div>
     <div class="empty-sub">Check your connection</div>
-    <button onclick="loadFeed(true)" style="margin-top:16px;padding:10px 22px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--gold);font-family:'Jost',sans-serif;cursor:pointer;font-size:13px;">Try again</button>
+    <button onclick="loadFeed(false)" style="margin-top:16px;padding:10px 22px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--gold);font-family:'Jost',sans-serif;cursor:pointer;font-size:13px;">Try again</button>
   </div>
 </div>
 
 <!-- ── FAB ── -->
 <button id="fab" aria-label="Add photo" onclick="toggleDrawer()">
-  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
     <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
   </svg>
 </button>
@@ -749,77 +595,87 @@ const CONFIG = {
 // ═══════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════
-let eventKey = null;
+let eventKey   = null;
+let knownKeys  = new Set();
+let viewMode   = 'feed'; // 'feed' | 'grid'
 let selectedFiles = [];
-let knownKeys = new Set();
-let likeCounts = {};    // key → count (local)
-let liked = new Set();  // locally liked keys
-let lastTap = {};       // for double-tap
 
 // ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   eventKey = new URLSearchParams(location.search).get('event');
-  updateKeyBadge();
   setupDragDrop();
   loadFeed(true);
   setInterval(() => loadFeed(false), CONFIG.REFETCH_MS);
 });
 
 // ═══════════════════════════════════════
-// KEY BADGE
+// VIEW TOGGLE
 // ═══════════════════════════════════════
-function updateKeyBadge() {
-  const el = document.getElementById('key-status');
-  if (!eventKey) { el.className = 'key-badge neutral'; el.textContent = 'No key'; return; }
-  el.className = 'key-badge valid';
-  el.textContent = '🔑 ' + eventKey;
+function setView(mode) {
+  viewMode = mode;
+  const wrap = document.getElementById('feed-wrap');
+  wrap.classList.toggle('mode-feed', mode === 'feed');
+  wrap.classList.toggle('mode-grid', mode === 'grid');
+  document.getElementById('btn-feed').classList.toggle('active', mode === 'feed');
+  document.getElementById('btn-grid').classList.toggle('active', mode === 'grid');
 }
 
 // ═══════════════════════════════════════
 // FEED
 // ═══════════════════════════════════════
 async function loadFeed(initial = false) {
-  const feed = document.getElementById('feed');
   const skeleton = document.getElementById('skeleton-wrap');
-  const empty = document.getElementById('empty-state');
-  const error = document.getElementById('error-state');
+  const empty    = document.getElementById('empty-state');
+  const error    = document.getElementById('error-state');
+  const list     = document.getElementById('feed-list');
 
   try {
-    const res = await fetch(`/list?event=${eventKey}`);
-    if (!res.ok) throw new Error();
+    const res = await fetch(`/list?event=${encodeURIComponent(eventKey || '')}`);
+    if (!res.ok) throw new Error('fetch failed');
     const items = await res.json(); // [{key, url, contentType, uploaded}]
 
     skeleton.style.display = 'none';
-    empty.style.display = 'none';
-    error.style.display = 'none';
+    empty.style.display    = 'none';
+    error.style.display    = 'none';
 
-    if (items.length === 0) {
+    if (!items || items.length === 0) {
       empty.style.display = 'flex';
       return;
     }
 
-    // Sort newest first
-    items.sort((a,b) => new Date(b.uploaded) - new Date(a.uploaded));
+    // Newest first
+    items.sort((a, b) => new Date(b.uploaded) - new Date(a.uploaded));
 
-    // Add only new items
     const newItems = items.filter(it => !knownKeys.has(it.key));
 
-    newItems.forEach((item, i) => {
+    newItems.forEach(item => {
       knownKeys.add(item.key);
-      if (!likeCounts[item.key]) likeCounts[item.key] = Math.floor(Math.random() * 18) + 1;
-      const card = buildCard(item, !initial);
-      // Insert before skeleton (which is now hidden) or prepend
+      const { feedCard, gridCard } = buildCards(item);
+
       if (initial) {
-        feed.appendChild(card);
+        list.appendChild(feedCard);
+        list.appendChild(gridCard);
       } else {
-        // Prepend after header elements
-        const firstCard = feed.querySelector('.post-card');
-        if (firstCard) feed.insertBefore(card, firstCard);
-        else feed.appendChild(card);
+        // Prepend newest
+        list.insertBefore(gridCard, list.firstChild);
+        list.insertBefore(feedCard, list.firstChild);
       }
     });
+
+    // Photo count label (only after initial load)
+    if (initial) {
+      const existing = document.getElementById('photo-count');
+      if (existing) existing.remove();
+      if (items.length > 0) {
+        const lbl = document.createElement('div');
+        lbl.id = 'photo-count';
+        lbl.className = 'count-divider';
+        lbl.textContent = `${items.length} photo${items.length !== 1 ? 's' : ''} shared`;
+        list.appendChild(lbl);
+      }
+    }
 
   } catch(e) {
     skeleton.style.display = 'none';
@@ -829,18 +685,17 @@ async function loadFeed(initial = false) {
   }
 }
 
-function buildCard(item, isNew) {
+// ═══════════════════════════════════════
+// BUILD CARDS
+// ═══════════════════════════════════════
+function buildCards(item) {
   const isVideo = item.contentType?.startsWith('video/');
-  const card = document.createElement('div');
-  card.className = 'post-card';
-  card.dataset.key = item.key;
-  if (isNew) card.style.animationDelay = '0s';
-
   const timeAgo = formatTime(item.uploaded);
-  const avatarEmoji = randomAvatar(item.key);
-  const authorName = randomName(item.key);
-  const caption = randomCaption(item.key);
-  const count = likeCounts[item.key] || 0;
+
+  // ── Feed card ──
+  const feedCard = document.createElement('div');
+  feedCard.className = 'post-card';
+  feedCard.dataset.key = item.key;
 
   const mediaHtml = isVideo
     ? `<video src="${item.url}" muted playsinline preload="metadata" loop
@@ -848,156 +703,54 @@ function buildCard(item, isNew) {
        <span class="video-badge">▶ VIDEO</span>`
     : `<img src="${item.url}" loading="lazy" alt="Wedding photo" decoding="async" />`;
 
-  card.innerHTML = `
-    <div class="post-header">
-      <div class="post-avatar">${avatarEmoji}</div>
-      <div class="post-meta">
-        <div class="post-author">${authorName}</div>
-        <div class="post-time">${timeAgo}</div>
-      </div>
-      <button class="post-more" title="More">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
-      </button>
-    </div>
-
-    <div class="post-media" data-key="${item.key}" data-url="${item.url}" data-video="${isVideo}">
+  feedCard.innerHTML = `
+    <div class="post-media" onclick="openLightbox('${escAttr(item.url)}', ${isVideo})">
       ${mediaHtml}
-      <div class="heart-burst" id="heart-${item.key}">❤️</div>
     </div>
-
-    <div class="post-actions">
-      <button class="action-btn like-btn" data-key="${item.key}" onclick="toggleLike(this, '${item.key}')">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-        </svg>
-      </button>
-      <button class="action-btn" onclick="openLightbox('${item.url}', ${isVideo})">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-      <div class="action-spacer"></div>
-      <button class="action-btn" onclick="shareItem('${item.url}')" title="Share">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
-        </svg>
+    <div class="post-footer">
+      <span class="post-time-label">${timeAgo}</span>
+      <button class="post-expand-btn" onclick="openLightbox('${escAttr(item.url)}', ${isVideo})">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        View
       </button>
     </div>
-
-    <div class="post-likes" id="likes-${item.key}">${count} like${count !== 1 ? 's' : ''}</div>
-    <div class="post-caption">${caption}</div>
   `;
 
-  // Double-tap to like on media
-  const media = card.querySelector('.post-media');
-  media.addEventListener('click', () => openLightbox(item.url, isVideo));
-  setupDoubleTap(media, item.key, card);
+  // ── Grid card ──
+  const gridCard = document.createElement('div');
+  gridCard.className = 'grid-card';
+  gridCard.dataset.key = item.key;
 
-  return card;
-}
-
-// ═══════════════════════════════════════
-// DOUBLE TAP
-// ═══════════════════════════════════════
-function setupDoubleTap(el, key, card) {
-  let lastClick = 0;
-  el.addEventListener('click', (e) => {
-    const now = Date.now();
-    if (now - lastClick < 300) {
-      e.stopPropagation(); // prevent lightbox
-      if (!liked.has(key)) {
-        liked.add(key);
-        likeCounts[key] = (likeCounts[key] || 0) + 1;
-        updateLikeUI(key, card);
-      }
-      // Burst heart
-      const heart = document.getElementById('heart-' + key);
-      if (heart) {
-        heart.classList.remove('pop');
-        void heart.offsetWidth;
-        heart.classList.add('pop');
-      }
-      lastClick = 0;
-    } else {
-      lastClick = now;
-    }
-  });
-}
-
-// ═══════════════════════════════════════
-// LIKE
-// ═══════════════════════════════════════
-function toggleLike(btn, key) {
-  if (liked.has(key)) {
-    liked.delete(key);
-    likeCounts[key] = Math.max(0, (likeCounts[key] || 1) - 1);
+  if (isVideo) {
+    gridCard.innerHTML = `
+      <video src="${escAttr(item.url)}" muted playsinline preload="metadata"></video>
+      <div class="grid-video-icon">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+    `;
   } else {
-    liked.add(key);
-    likeCounts[key] = (likeCounts[key] || 0) + 1;
-    // Mini bounce
-    btn.querySelector('svg').style.transform = 'scale(1.35)';
-    setTimeout(() => { btn.querySelector('svg').style.transform = ''; }, 180);
+    gridCard.innerHTML = `<img src="${escAttr(item.url)}" loading="lazy" alt="Wedding photo" decoding="async" />`;
   }
-  const card = btn.closest('.post-card');
-  updateLikeUI(key, card);
-}
 
-function updateLikeUI(key, card) {
-  const btn = card.querySelector('.like-btn');
-  const countEl = document.getElementById('likes-' + key);
-  const isLiked = liked.has(key);
-  btn.classList.toggle('liked', isLiked);
-  const c = likeCounts[key] || 0;
-  if (countEl) countEl.textContent = `${c} like${c !== 1 ? 's' : ''}`;
+  gridCard.addEventListener('click', () => openLightbox(item.url, isVideo));
+
+  return { feedCard, gridCard };
 }
 
 // ═══════════════════════════════════════
-// SHARE
+// HELPERS
 // ═══════════════════════════════════════
-async function shareItem(url) {
-  if (navigator.share) {
-    try { await navigator.share({ title: 'Ricardo & Margarida 💍', url }); return; } catch {}
-  }
-  try { await navigator.clipboard.writeText(url); showToast('Link copied!', 'success'); } catch {}
-}
-
-// ═══════════════════════════════════════
-// HELPERS (deterministic from key)
-// ═══════════════════════════════════════
-const EMOJIS = ['🎉','👨‍👩‍👧','👴','👵','🤵','👰','👫','💃','🕺','👨‍👩‍👦','🌸','🎊'];
-const NAMES  = ['Ana Costa','João Silva','Maria Santos','Pedro Oliveira','Beatriz Ferreira',
-                'Carlos Mendes','Sofia Rodrigues','Tiago Alves','Rita Gomes','Miguel Pereira',
-                'Francisca Lopes','André Carvalho'];
-const CAPTIONS = [
-  '<em>Que momento tão lindo!</em> 🌸',
-  'Parabéns aos noivos! ✨',
-  '<em>Amor verdadeiro.</em> 💕',
-  'Que festa incrível! 🎊',
-  'Felicidades para sempre! 💍',
-  '<em>Um dia inesquecível.</em> 🥂',
-  'A melhor festa do ano! 🎉',
-  '<em>Sempre juntos.</em> ❤️',
-  'Que bonitos ficaram! 📸',
-  'Muita felicidade! 🌺',
-];
-
-function hash(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
-  return Math.abs(h);
-}
-
-function randomAvatar(key) { return EMOJIS[hash(key) % EMOJIS.length]; }
-function randomName(key)   { return NAMES[hash(key + 'n') % NAMES.length]; }
-function randomCaption(key){ return CAPTIONS[hash(key + 'c') % CAPTIONS.length]; }
-
 function formatTime(iso) {
   if (!iso) return 'Just now';
   const diff = (Date.now() - new Date(iso)) / 1000;
-  if (diff < 60) return 'Just now';
-  if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
-  if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
-  return `${Math.floor(diff/86400)}d ago`;
+  if (diff < 60)    return 'Just now';
+  if (diff < 3600)  return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  return `${Math.floor(diff / 86400)}d ago`;
+}
+
+function escAttr(str) {
+  return (str || '').replace(/'/g, "\\'");
 }
 
 // ═══════════════════════════════════════
@@ -1005,8 +758,8 @@ function formatTime(iso) {
 // ═══════════════════════════════════════
 function toggleDrawer() {
   const drawer = document.getElementById('upload-drawer');
-  const fab = document.getElementById('fab');
-  const open = drawer.classList.toggle('open');
+  const fab    = document.getElementById('fab');
+  const open   = drawer.classList.toggle('open');
   fab.classList.toggle('open', open);
   document.body.style.overflow = open ? 'hidden' : '';
   if (!open) resetUpload();
@@ -1022,7 +775,7 @@ function handleFiles(fileList) {
     if (f.size > maxB) over.push(f.name);
     else selectedFiles.push(f);
   });
-  if (over.length) showToast(`${over.length} file(s) too large`, 'error');
+  if (over.length) showToast(`${over.length} file(s) too large (max ${CONFIG.MAX_MB} MB)`, 'error');
   renderFileList();
 }
 
@@ -1035,19 +788,19 @@ function renderFileList() {
     return;
   }
   list.style.display = 'block';
-  list.innerHTML = selectedFiles.map((f,i) => `
+  list.innerHTML = selectedFiles.map((f, i) => `
     <div class="file-row">
       <span>${f.type.startsWith('video/') ? '▶' : '📷'}</span>
       <span class="file-name">${f.name}</span>
-      <span class="file-size">${(f.size/1024/1024).toFixed(1)} MB</span>
+      <span class="file-size">${(f.size / 1024 / 1024).toFixed(1)} MB</span>
       <button class="file-remove" onclick="removeFile(${i})">✕</button>
     </div>
   `).join('');
-  btn.textContent = `Upload ${selectedFiles.length} file${selectedFiles.length>1?'s':''}`;
+  btn.textContent = `Upload ${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''}`;
 }
 
 function removeFile(i) {
-  selectedFiles.splice(i,1);
+  selectedFiles.splice(i, 1);
   renderFileList();
 }
 
@@ -1074,20 +827,22 @@ async function startUpload() {
     fd.append('file', file);
     fd.append('event', eventKey);
     try {
-      const res = await fetch(`/upload?event=${eventKey}`, { method:'POST', body: fd });
+      const res = await fetch(`/upload?event=${encodeURIComponent(eventKey)}`, { method: 'POST', body: fd });
       if (!res.ok) {
-        const b = await res.json().catch(()=>({}));
+        const b = await res.json().catch(() => ({}));
         if (res.status === 403) { showToast('Invalid event key', 'error'); break; }
-        throw new Error(b.error || 'failed');
+        throw new Error(b.error || 'Upload failed');
       }
       done++;
       const p = Math.round((done / selectedFiles.length) * 100);
       fill.style.width = p + '%';
       pct.textContent  = p + '%';
-    } catch(e) { showToast(`Error: ${e.message}`, 'error'); }
+    } catch (e) {
+      showToast(`Error: ${e.message}`, 'error');
+    }
   }
 
-  if (done > 0) showToast(`${done} photo${done>1?'s':''} shared! 🎉`, 'success');
+  if (done > 0) showToast(`${done} photo${done > 1 ? 's' : ''} shared! 🎉`, 'success');
   btn.disabled = false;
   prog.style.display = 'none';
   fill.style.width = '0%';
@@ -1112,8 +867,8 @@ function resetUpload() {
 // ═══════════════════════════════════════
 function setupDragDrop() {
   const dz = document.getElementById('drop-zone');
-  ['dragenter','dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag-over'); }));
-  ['dragleave','drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag-over'); }));
+  ['dragenter', 'dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag-over'); }));
   dz.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
 }
 
@@ -1124,14 +879,17 @@ function openLightbox(url, isVideo) {
   const box = document.getElementById('lightbox');
   const cnt = document.getElementById('lightbox-content');
   cnt.innerHTML = isVideo
-    ? `<video src="${url}" controls autoplay playsinline style="max-width:95vw;max-height:90dvh;border-radius:4px"></video>`
+    ? `<video src="${url}" controls autoplay playsinline style="max-width:96vw;max-height:92dvh;border-radius:4px"></video>`
     : `<img src="${url}" alt="Wedding photo" />`;
   box.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
+  const box = document.getElementById('lightbox');
+  box.classList.remove('active');
+  const v = box.querySelector('video');
+  if (v) v.pause();
   document.getElementById('lightbox-content').innerHTML = '';
   document.body.style.overflow = '';
 }
@@ -1148,7 +906,7 @@ function showToast(msg, type = 'success') {
   t.textContent = msg;
   c.appendChild(t);
   requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
-  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3500);
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 280); }, 3400);
 }
 </script>
 </body>
