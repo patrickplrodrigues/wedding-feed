@@ -52,7 +52,7 @@ export async function onRequestGet(context) {
       const contentType = obj.httpMetadata?.contentType || guessContentType(obj.key);
       const url = usePublicUrl
         ? `${env.PUBLIC_BUCKET_URL.replace(/\/$/, '')}/${obj.key}`
-        : `/functions/media/${encodeURIComponent(obj.key)}`;
+        : `/media/${encodeURIComponent(obj.key)}`;
 
       return {
         key: obj.key,
