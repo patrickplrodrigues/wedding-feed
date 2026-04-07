@@ -22,13 +22,18 @@ export async function onRequestPost(context) {
 
   // ── Parse multipart body ────────────────────────────────────────────────
   let formData;
-  const caption = (formData.get('caption') || '').toString().slice(0, 200);
-  try {
-    formData = await request.formData();
-  } catch {
-    return jsonResponse({ error: 'Invalid multipart body' }, 400, corsHeaders);
-  }
 
+try {
+  formData = await request.formData();
+} catch {
+  return jsonResponse({ error: 'Invalid multipart body' }, 400, corsHeaders);
+}
+
+// 👉 AGORA SIM podes ler
+let caption = formData.get('caption');
+
+if (typeof caption !== 'string') caption = '';
+caption = caption.trim().slice(0, 200);
   // ── Access key validation ───────────────────────────────────────────────
   const url = new URL(request.url);
 
@@ -72,8 +77,8 @@ export async function onRequestPost(context) {
       customMetadata: {
         originalName: file.name.slice(0, 255), // cap length
         uploadedAt: new Date().toISOString(),
-        eventKey,
-        caption,
+        eventKey: String(eventKey || ''),
+        caption: String(caption || ''),
       },
     });
   } catch (err) {
