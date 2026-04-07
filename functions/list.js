@@ -62,6 +62,7 @@ export async function onRequestGet(context) {
         uploaded: obj.uploaded?.toISOString?.() ?? null,
         // Expose original filename from custom metadata if present
         originalName: obj.customMetadata?.originalName ?? null,
+        caption: obj.customMetadata?.caption ?? '',
       };
     })
     // Sort newest-first by upload time embedded in key name (timestamp prefix)
