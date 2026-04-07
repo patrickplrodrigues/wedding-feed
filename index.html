@@ -609,7 +609,7 @@ const CONFIG = {
 // STATE
 // ═══════════════════════════════════════
 let eventKey   = null;
-let knownKeys  = new Set();
+let knownItems = new Map();
 let viewMode   = 'feed'; // 'feed' | 'grid'
 let selectedFiles = [];
 
@@ -639,6 +639,7 @@ function setView(mode) {
 // FEED
 // ═══════════════════════════════════════
 async function loadFeed(initial = false) {
+  
   const skeleton = document.getElementById('skeleton-wrap');
   const empty    = document.getElementById('empty-state');
   const error    = document.getElementById('error-state');
@@ -661,38 +662,42 @@ async function loadFeed(initial = false) {
     // Newest first
     items.sort((a, b) => new Date(b.uploaded) - new Date(a.uploaded));
 
-    const newItems = items.filter(it => !knownKeys.has(it.key));
+ const newItems = items.filter(it => {
+  const prev = knownItems.get(it.key);
+  return !prev || prev.caption !== it.caption;
+});
+if (!newItems.length && !initial) return;
+newItems.forEach(item => {
+  knownItems.set(item.key, item);
+  list.querySelectorAll(`[data-key="${item.key}"]`)
+    .forEach(el => el.remove());
 
-    newItems.forEach(item => {
-      knownKeys.add(item.key);
-      const { feedCard, gridCard } = buildCards(item);
+  const { feedCard, gridCard } = buildCards(item);
 
-      if (initial) {
-        list.appendChild(feedCard);
-        list.appendChild(gridCard);
-      } else {
-        // Prepend newest
-        list.insertBefore(gridCard, list.firstChild);
-        list.insertBefore(feedCard, list.firstChild);
-      }
-    });
+  if (initial) {
+    list.appendChild(feedCard);
+    list.appendChild(gridCard);
+  } else {
+    list.insertBefore(feedCard, list.firstChild);
+    list.insertBefore(gridCard, list.firstChild);
+  }
+});
 
     // Photo count label (only after initial load)
-    if (initial) {
-      const existing = document.getElementById('photo-count');
-      if (existing) existing.remove();
-      if (items.length > 0) {
-        const lbl = document.createElement('div');
-        lbl.id = 'photo-count';
-        lbl.className = 'count-divider';
-        lbl.textContent = `${items.length} photo${items.length !== 1 ? 's' : ''} shared`;
-        list.appendChild(lbl);
-      }
-    }
+   let lbl = document.getElementById('photo-count');
+
+if (!lbl) {
+  lbl = document.createElement('div');
+  lbl.id = 'photo-count';
+  lbl.className = 'count-divider';
+  list.appendChild(lbl);
+}
+
+lbl.textContent = `${items.length} photo${items.length !== 1 ? 's' : ''} shared`;
 
   } catch(e) {
     skeleton.style.display = 'none';
-    if (knownKeys.size === 0) {
+    if (knownItems.size === 0) {
       error.style.display = 'flex';
     }
   }
