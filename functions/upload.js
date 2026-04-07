@@ -22,6 +22,7 @@ export async function onRequestPost(context) {
 
   // ── Parse multipart body ────────────────────────────────────────────────
   let formData;
+  const caption = (formData.get('caption') || '').toString().slice(0, 200);
   try {
     formData = await request.formData();
   } catch {
@@ -72,6 +73,7 @@ export async function onRequestPost(context) {
         originalName: file.name.slice(0, 255), // cap length
         uploadedAt: new Date().toISOString(),
         eventKey,
+        caption,
       },
     });
   } catch (err) {
